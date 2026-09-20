@@ -1,0 +1,132 @@
+/* Engineering Mathematics Lab — persistent glossary */
+.glossaryToggle,.mobileGlossaryToggle{
+  border:1px solid var(--line);background:rgba(255,255,255,.82);color:var(--ink);cursor:pointer;
+  font-weight:850;box-shadow:none;transition:background .18s ease,border-color .18s ease,transform .18s ease;
+}
+.glossaryToggle{
+  min-width:106px;padding:9px 12px;border-radius:16px;display:flex;align-items:center;justify-content:center;gap:8px;
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)
+}
+.glossaryToggle:hover{background:#fff;border-color:#cbd5e9;transform:translateY(-1px)}
+.glossaryToggleIcon{font-family:Georgia,'Times New Roman',serif;font-size:18px;line-height:1;font-weight:700;color:#4d5fc6}
+.glossaryToggleText{font-size:11px;white-space:nowrap}
+.mobileGlossaryToggle{display:none}
+
+.glossaryModal{
+  position:fixed;inset:0;z-index:22000;display:none;align-items:center;justify-content:center;padding:18px;
+  background:rgba(18,25,43,.52);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)
+}
+.glossaryModal.open{display:flex}
+body.glossaryOpen{overflow:hidden}
+.glossaryPanel{
+  width:min(1080px,100%);height:min(88vh,860px);display:flex;flex-direction:column;overflow:hidden;
+  background:#fff;border:1px solid #e2e7f0;border-radius:24px;box-shadow:0 34px 90px rgba(12,20,40,.28)
+}
+.glossaryHead{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;padding:22px 24px 14px;border-bottom:1px solid #e8ecf3}
+.glossaryKicker{font-size:10px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;color:#6a76a9;margin-bottom:5px}
+.glossaryTitle{margin:0;color:var(--ink);font-size:25px;letter-spacing:-.025em}
+.glossarySubtitle{margin:5px 0 0;color:var(--muted);font-size:12px;line-height:1.45}
+.glossaryClose{border:0;background:#f0f3f8;color:#4a5367;border-radius:11px;padding:9px 12px;font-weight:850;cursor:pointer}
+.glossaryClose:hover{background:#e8edf5}
+.glossaryTabs{display:flex;gap:8px;padding:12px 24px;border-bottom:1px solid #e8ecf3;background:#fafbfe;overflow-x:auto;scrollbar-width:none}
+.glossaryTabs::-webkit-scrollbar{display:none}
+.glossaryTab{flex:0 0 auto;border:1px solid #dfe5ef;background:#fff;color:#4a556d;border-radius:999px;padding:9px 13px;font-size:11px;font-weight:900;cursor:pointer;white-space:nowrap}
+.glossaryTab:hover{background:#f4f6fb}
+.glossaryTab.active{background:#eef1ff;border-color:#aeb9ef;color:#3e50ba}
+.glossaryBody{flex:1;overflow:auto;padding:20px 24px 30px;overscroll-behavior:contain}
+.glossarySection{display:none}
+.glossarySection.active{display:block}
+.glossaryIntro{margin:0 0 16px;color:#59647b;font-size:13px;line-height:1.55}
+.glossaryGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.glossaryCard{border:1px solid #e2e7f0;background:#fbfcff;border-radius:16px;padding:15px 16px;min-width:0}
+.glossaryCard.wide{grid-column:1/-1}
+.glossaryCard h3{margin:0 0 9px;font-size:14px;color:#27334c;letter-spacing:-.01em}
+.glossaryCard h4{margin:13px 0 6px;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#788299}
+.glossaryCard p,.glossaryCard li{font-size:12px;line-height:1.55;color:#4f5a70}
+.glossaryCard p{margin:7px 0}
+.glossaryCard ul,.glossaryCard ol{margin:7px 0 0;padding-left:19px}
+.glossaryCard li+li{margin-top:5px}
+.glossaryFormula{margin:7px 0;padding:9px 10px;border-radius:10px;background:#f3f5fa;border:1px solid #e6eaf2;color:#25314a;overflow-x:auto;font-size:12px}
+.glossaryFormula mjx-container{margin:.2em 0!important}
+.glossaryMethodTop{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.glossaryMethodNo{display:grid;place-items:center;flex:0 0 28px;width:28px;height:28px;border-radius:9px;background:#eef1ff;color:#4053bd;font-size:11px;font-weight:950}
+.glossaryMethodName{font-size:14px;font-weight:900;color:#27334c}
+.glossaryRecognition{font-size:11px;color:#6d7890;margin:0 0 8px}
+.glossarySteps{margin:8px 0 0;padding-left:18px}
+.glossarySteps li{font-size:11.5px}
+.glossaryNote{margin-top:9px;padding:9px 10px;border-radius:10px;background:#fff8e9;border:1px solid #efe0b6;color:#6e5932;font-size:11px;line-height:1.5}
+.glossaryDanger{background:#fff2f4;border-color:#efd4da;color:#79384b}
+.glossaryChoice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:8px}
+.glossaryChoice div{border:1px solid #e4e8f0;background:#fff;border-radius:11px;padding:9px 10px;font-size:11px;line-height:1.45;color:#4e596f}
+.glossaryChoice b{display:block;color:#27334c;margin-bottom:2px}
+.glossarySimulationGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.glossarySimulationCard{display:flex;flex-direction:column;min-width:0;border:1px solid #e2e7f0;background:#fbfcff;border-radius:16px;padding:15px 16px}
+.glossarySimulationMeta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
+.glossarySimulationMeta span{display:inline-flex;align-items:center;min-height:24px;padding:4px 8px;border-radius:999px;background:#eef1ff;color:#4053bd;font-size:9.5px;font-weight:900;letter-spacing:.04em;text-transform:uppercase}
+.glossarySimulationMeta span+span{background:#edf8f4;color:#28735e}
+.glossarySimulationCard h3{margin:0 0 6px;font-size:14px;color:#27334c}
+.glossarySimulationCard p{flex:1;margin:0 0 12px;font-size:11.5px;line-height:1.55;color:#566178}
+.glossarySimulationOpen{align-self:flex-start;border:1px solid #aeb9ef;background:#eef1ff;color:#3e50ba;border-radius:10px;padding:8px 11px;font-size:10.5px;font-weight:900;cursor:pointer;transition:background .16s ease,border-color .16s ease,transform .16s ease}
+.glossarySimulationOpen:hover{background:#e4e8ff;border-color:#8796df;transform:translateY(-1px)}
+
+html[data-theme="dark"] .glossaryToggle,
+html[data-theme="dark"] .mobileGlossaryToggle{background:#151d2a;border-color:#344057;color:#e4eaf6}
+html[data-theme="dark"] .glossaryToggle:hover,
+html[data-theme="dark"] .mobileGlossaryToggle:hover{background:#1c2636;border-color:#46546d}
+html[data-theme="dark"] .glossaryToggleIcon{color:#aab7ff}
+html[data-theme="dark"] .glossaryModal{background:rgba(0,0,0,.64)}
+html[data-theme="dark"] .glossaryPanel{background:#111823;border-color:#303b50;box-shadow:0 34px 90px rgba(0,0,0,.55)}
+html[data-theme="dark"] .glossaryHead{border-bottom-color:#2a3448}
+html[data-theme="dark"] .glossaryTitle{color:#edf2fb}
+html[data-theme="dark"] .glossarySubtitle{color:#9da9bd}
+html[data-theme="dark"] .glossaryKicker{color:#9aa8ff}
+html[data-theme="dark"] .glossaryClose{background:#1b2534;color:#d9e1ee}
+html[data-theme="dark"] .glossaryClose:hover{background:#243044}
+html[data-theme="dark"] .glossaryTabs{background:#0f1621;border-bottom-color:#2a3448}
+html[data-theme="dark"] .glossaryTab{background:#151d2a;border-color:#344057;color:#bac4d5}
+html[data-theme="dark"] .glossaryTab:hover{background:#1c2636}
+html[data-theme="dark"] .glossaryTab.active{background:#252f52;border-color:#5869b8;color:#dfe5ff}
+html[data-theme="dark"] .glossaryIntro{color:#aab4c6}
+html[data-theme="dark"] .glossaryCard{background:#151d29;border-color:#2d384c}
+html[data-theme="dark"] .glossaryCard h3,
+html[data-theme="dark"] .glossaryMethodName{color:#e4eaf6}
+html[data-theme="dark"] .glossaryCard h4{color:#9ba6ba}
+html[data-theme="dark"] .glossaryCard p,
+html[data-theme="dark"] .glossaryCard li{color:#b2bdcf}
+html[data-theme="dark"] .glossaryRecognition{color:#99a5b8}
+html[data-theme="dark"] .glossaryMethodNo{background:#252f52;color:#c9d0ff}
+html[data-theme="dark"] .glossaryFormula{background:#0f1621;border-color:#2a3448;color:#e4eaf6}
+html[data-theme="dark"] .glossaryNote{background:#282313;border-color:#4e4323;color:#dac98f}
+html[data-theme="dark"] .glossaryDanger{background:#2b1820;border-color:#5c2c3b;color:#e7aab9}
+html[data-theme="dark"] .glossaryChoice div{background:#101721;border-color:#2d384b;color:#abb6c8}
+html[data-theme="dark"] .glossaryChoice b{color:#e0e7f2}
+html[data-theme="dark"] .glossarySimulationCard{background:#151d29;border-color:#2d384c}
+html[data-theme="dark"] .glossarySimulationCard h3{color:#e4eaf6}
+html[data-theme="dark"] .glossarySimulationCard p{color:#b2bdcf}
+html[data-theme="dark"] .glossarySimulationMeta span{background:#252f52;color:#c9d0ff}
+html[data-theme="dark"] .glossarySimulationMeta span+span{background:#173126;color:#91d8bd}
+html[data-theme="dark"] .glossarySimulationOpen{background:#252f52;border-color:#5869b8;color:#dfe5ff}
+html[data-theme="dark"] .glossarySimulationOpen:hover{background:#303c66;border-color:#7182d2}
+
+@media(max-width:850px){
+  .glossaryToggle{display:none!important}
+  .mobileGlossaryToggle{display:inline-flex!important;align-items:center;justify-content:center;gap:6px;min-height:40px;padding:7px 9px;border-radius:12px;font-size:11px}
+  .glossaryPanel{height:calc(100dvh - 12px);max-height:none;border-radius:18px}
+  .glossaryModal{padding:6px;align-items:flex-start}
+  .glossaryHead{padding:16px 15px 11px;gap:10px}
+  .glossaryTitle{font-size:20px}
+  .glossarySubtitle{font-size:11px}
+  .glossaryTabs{padding:10px 12px;gap:6px}
+  .glossaryTab{padding:8px 10px;font-size:10.5px}
+  .glossaryBody{padding:14px 12px calc(24px + env(safe-area-inset-bottom))}
+  .glossaryGrid{grid-template-columns:1fr;gap:10px}
+  .glossaryCard.wide{grid-column:auto}
+  .glossaryChoice{grid-template-columns:1fr}
+  .glossarySimulationGrid{grid-template-columns:1fr;gap:10px}
+}
+
+@media(max-width:430px){
+  .mobileGlossaryToggle .glossaryToggleText{display:none}
+  .mobileGlossaryToggle{width:40px;padding:0}
+  .mobileGlossaryToggle .glossaryToggleIcon{font-size:18px}
+}

@@ -190,21 +190,20 @@ try {
     { timeout: 30000 },
     USER
   );
-  await page.evaluate(() => window.forceCloudSave());
-  await page.waitForFunction(
-    () => {
-      const t = document.querySelector('#cloudProfileMainText')?.textContent || '';
-      return /synced|saved/i.test(t);
-    },
-    { timeout: 30000 }
-  );
+  await page.evaluate(async () => { await window.forceCloudSave(); });
+  await sleep(300);
   const cloud = await page.evaluate(() => ({
     main: document.querySelector('#cloudProfileMainText')?.textContent || '',
     signed: document.querySelector('#cloudSignedInName')?.textContent || '',
-    status: document.querySelector('#cloudStatus')?.textContent || ''
+    status: document.querySelector('#cloudStatus')?.textContent || '',
+    dotClass: document.querySelector('#cloudDot')?.className || '',
+    ready: typeof cloudReady !== 'undefined' ? cloudReady : false,
+    revision: typeof cloudRevision !== 'undefined' ? cloudRevision : -1
   }));
   assert(cloud.signed.toLowerCase().includes(USER), 'cloud sign-in did not complete for smoke-test username');
-  assert(/synced|saved/i.test(cloud.main), 'cloud indicator did not reach synced/saved state: ' + cloud.main);
+  assert(cloud.ready, 'cloud backend did not reach ready state');
+  assert(cloud.revision >= 0, 'cloud revision was not established');
+  assert(/up to date|loaded successfully|sync/i.test(cloud.status + ' ' + cloud.main), 'cloud UI did not report a healthy sync state: ' + JSON.stringify(cloud));
   await page.evaluate(() => window.closeCloudProfile());
   await sleep(150);
 

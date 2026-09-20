@@ -205,6 +205,8 @@ try {
   }));
   assert(cloud.signed.toLowerCase().includes(USER), 'cloud sign-in did not complete for smoke-test username');
   assert(/synced|saved/i.test(cloud.main), 'cloud indicator did not reach synced/saved state: ' + cloud.main);
+  await page.evaluate(() => window.closeCloudProfile());
+  await sleep(150);
 
   // Mobile shell and layout.
   await page.setViewport({ width: 390, height: 844, deviceScaleFactor: 1 });

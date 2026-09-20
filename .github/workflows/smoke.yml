@@ -1,0 +1,29 @@
+name: Live site smoke test
+
+on:
+  push:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Find Chrome
+        shell: bash
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser)"
+          test -n "$CHROME_BIN"
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+          "$CHROME_BIN" --version
+      - name: Install browser driver
+        run: npm install --no-save puppeteer-core@24
+      - name: Smoke test deployed site
+        env:
+          SITE_URL: https://weather-mister.github.io/eng-math-lab/
+          SMOKE_USERNAME: migration_smoke_test
+        run: node tests/smoke.mjs

@@ -1,0 +1,20 @@
+{
+  "course": "Engineering Mathematics Lab",
+  "project_id": "proj_2n5NGlkoTAhU",
+  "audit_program_version": 1,
+  "completed": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+  "next_audit": null,
+  "planned_deployment_version": 61,
+  "details": {
+    "1": "Cross-course prerequisite & notation audit complete; removed a pre-Part-5 rank prerequisite leak from Lesson 7 and added shared inequality-preservation handling for math rendering.",
+    "2": "Independent mathematics verification complete across Lessons 1-25; no additional confirmed arithmetic/method defect remained after the rendering correction.",
+    "3": "Source-fidelity audit complete against the supplied NTU syllabus/O'Neil SI 8e; corrected stale Lesson 4 wording that falsely implied the entire Problems 7-23 bank was still included.",
+    "4": "Difficulty/progression audit complete; teaching-to-transfer escalation is coherent and no further padding/reordering defect was confirmed.",
+    "5": "Spaced-retrieval audit complete; added four delayed cumulative retrieval problems in Lessons 20 and 22 so Parts 1-4 reappear before the final review.",
+    "6": "Full UI/interaction regression audit complete across all course screens at mobile and desktop sizes; navigation, quizzes, solution reveal, whiteboards, fullscreen, and overflow checks passed.",
+    "7": "Persistence/sync stress audit complete. Confirmed and fixed a legacy startup isolation edge case: a remembered username without a scoped cache could fall back to a generic state owned by another profile before cloud reconciliation. Generic migration now requires matching ownership or a safe ownerless legacy state. Existing structural-equality save-loop protection, revision conflict merge, outgoing-profile flush/cache, anonymous isolation, online retry, and pagehide/visibility flush logic were rechecked and preserved.",
+    "8": "Beginner-without-professor clarity audit complete. Course-wide language/acronym scan found no systemic skipped-reasoning pattern; added explicit first-use definitions for undetermined coefficients (UC), variation of parameters (VP), and linear time-invariant (LTI) before later shorthand use. No cosmetic rewrites were made where reasoning was already shown.",
+    "9": "Exam-readiness/syllabus-skill-matrix audit complete. Midterm boundaries remained correct; the cumulative final review underrepresented several Part 1-2 selection outcomes, so four targeted diagnostics were added for first-order method selection, reduction of order versus variation of parameters, BVP compatibility, and engineering-model formulation.",
+    "10": "Performance/maintainability audit complete. No risky persistence/whiteboard refactor was justified. Confirmed stale cache-busting version tags across lesson/mobile assets and normalized them to the current audited release so returning browsers request current scripts. Existing all-lesson deferred loading was left intact because changing boot architecture would create disproportionate regression risk without a confirmed functional defect."
+  }
+}

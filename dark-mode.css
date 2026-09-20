@@ -1,0 +1,222 @@
+/* Engineering Mathematics Lab — optional dark theme. Loaded after mobile.css so it can safely override presentation only. */
+html[data-theme="dark"]{
+  color-scheme:dark;
+  --ink:#edf2fb;
+  --ink-2:#d4dceb;
+  --muted:#96a3ba;
+  --paper:#0b1018;
+  --card:#141b27;
+  --card-soft:#171f2c;
+  --surface:#111823;
+  --line:#283246;
+  --line-strong:#364259;
+  --accent:#7d8cff;
+  --accent-dark:#91a0ff;
+  --accent-soft:#222b4d;
+  --success:#54c995;
+  --danger:#ef7891;
+  --shadow:0 16px 40px rgba(0,0,0,.34);
+  --shadow-soft:0 8px 22px rgba(0,0,0,.24);
+}
+html[data-theme="dark"],html[data-theme="dark"] body{background:#0b1018;color:var(--ink)}
+html[data-theme="dark"] body{
+  background:
+    radial-gradient(circle at 0 0,rgba(95,112,246,.12),transparent 28%),
+    radial-gradient(circle at 100% 10%,rgba(49,164,132,.08),transparent 24%),
+    var(--paper);
+}
+html[data-theme="dark"] .brand p{color:var(--muted)}
+html[data-theme="dark"] .progressBox,
+html[data-theme="dark"] .cloudProfileButton,
+html[data-theme="dark"] .hero,
+html[data-theme="dark"] .notesPanel,
+html[data-theme="dark"] .courseLessonPicker,
+html[data-theme="dark"] .unit,
+html[data-theme="dark"] .card{
+  background:rgba(20,27,39,.96);
+  border-color:var(--line);
+  color:var(--ink);
+}
+html[data-theme="dark"] .progressTrack{background:#252f41}
+html[data-theme="dark"] .cloudProfileButton:hover,
+html[data-theme="dark"] .heroToggle:hover,
+html[data-theme="dark"] .notesToggle:hover,
+html[data-theme="dark"] .topicUnit:hover{background:#192231;border-color:#3a465c}
+html[data-theme="dark"] .themeToggle,
+html[data-theme="dark"] .mobileThemeToggle{
+  background:#151d2a;
+  border-color:#344057;
+  color:#e4eaf6;
+}
+html[data-theme="dark"] .themeToggle:hover,
+html[data-theme="dark"] .mobileThemeToggle:hover{background:#1c2636;border-color:#46546d}
+html[data-theme="dark"] .themeToggleIcon{color:#aab7ff}
+html[data-theme="dark"] .smallbtn,
+html[data-theme="dark"] .addNoteBtn,
+html[data-theme="dark"] .notesExpandBtn,
+html[data-theme="dark"] .notesClear,
+html[data-theme="dark"] .notesDelete,
+html[data-theme="dark"] .notesUndoBtn,
+html[data-theme="dark"] .noteTab,
+html[data-theme="dark"] .toolBtn,
+html[data-theme="dark"] .close{
+  background:#182130;
+  border-color:#344057;
+  color:#d5ddeb;
+}
+html[data-theme="dark"] .smallbtn:hover,
+html[data-theme="dark"] .notesExpandBtn:hover,
+html[data-theme="dark"] .notesClear:hover,
+html[data-theme="dark"] .toolBtn:hover,
+html[data-theme="dark"] .close:hover{background:#202b3d;border-color:#46546d}
+html[data-theme="dark"] .smallbtn.dangerTool,
+html[data-theme="dark"] .notesDelete{color:#f292a5}
+html[data-theme="dark"] .smallbtn.dangerTool:hover,
+html[data-theme="dark"] .notesDelete:hover{background:#301b26;border-color:#694050}
+html[data-theme="dark"] .notesIcon,
+html[data-theme="dark"] .heroToggleBadge{background:#222b49;color:#aab5ff;box-shadow:inset 0 0 0 1px #303b62}
+html[data-theme="dark"] .notesTitle,
+html[data-theme="dark"] .courseMapTitle b,
+html[data-theme="dark"] .unit h3,
+html[data-theme="dark"] .topicUnitText strong,
+html[data-theme="dark"] .card h3,
+html[data-theme="dark"] .cloudSignedInName{color:#edf2fb}
+html[data-theme="dark"] .notesSub,
+html[data-theme="dark"] .courseMapTitle span,
+html[data-theme="dark"] .unit small,
+html[data-theme="dark"] .card .type,
+html[data-theme="dark"] .counter,
+html[data-theme="dark"] .scratchStatus,
+html[data-theme="dark"] .footerNote{color:#96a3ba}
+html[data-theme="dark"] .noteEditor,
+html[data-theme="dark"] .cloudUsernameInput,
+html[data-theme="dark"] .cloudSignedInCard,
+html[data-theme="dark"] .checkitem,
+html[data-theme="dark"] .mini{
+  background:#101722;
+  border-color:#2c374a;
+  color:#dce4f2;
+}
+html[data-theme="dark"] .noteTitleInput,
+html[data-theme="dark"] .notesTextarea,
+html[data-theme="dark"] .cloudUsernameInput{color:#e8eef8}
+html[data-theme="dark"] .noteTitleInput{border-bottom-color:#334057}
+html[data-theme="dark"] .noteTitleInput::placeholder,
+html[data-theme="dark"] .notesTextarea::placeholder,
+html[data-theme="dark"] .cloudUsernameInput::placeholder{color:#707d94}
+html[data-theme="dark"] .noteTab{color:#aeb9cc}
+html[data-theme="dark"] .noteTab.active{background:#242d50;border-color:#465581;color:#cbd3ff}
+html[data-theme="dark"] .notesUndoBar{background:#10271e;border-color:#295840;color:#9fe0bf}
+html[data-theme="dark"] .courseLessonSelect{
+  background:#101722;
+  border-color:#344057;
+  color:#dce4f2;
+}
+html[data-theme="dark"] .courseLessonSelect:hover{border-color:#46546d}
+html[data-theme="dark"] .courseLessonSelect:focus{border-color:#7485ee;box-shadow:0 0 0 3px #222b4d}
+html[data-theme="dark"] .topicUnit.active,
+html[data-theme="dark"] .lessonNode.active{background:#222b4d;border-color:#3d4a72;box-shadow:inset 0 0 0 1px #303b61;color:#cbd3ff}
+html[data-theme="dark"] .lessonNode{color:#b5c0d2}
+html[data-theme="dark"] .lessonNode:hover{background:#192231}
+html[data-theme="dark"] .dot{border-color:#526078}
+html[data-theme="dark"] .dot.current{border-color:#8290ff;box-shadow:0 0 0 3px #252d4d}
+html[data-theme="dark"] .card p{color:#c5cede}
+html[data-theme="dark"] .math{background:#1b2432;border-color:#303b4f;color:#eef3fb}
+html[data-theme="dark"] .eq{background:#111925;border-color:#2e394d;color:#edf2fb;box-shadow:inset 0 1px 0 rgba(255,255,255,.025)}
+html[data-theme="dark"] .step{background:#131c29;border-left-color:#7184ef;color:#cbd4e3}
+html[data-theme="dark"] .tip{background:#2b2516;border-color:#5b4a25;color:#eadba6}
+html[data-theme="dark"] .beginner{background:#132435;border-color:#27455f;color:#bcd8ef}
+html[data-theme="dark"] .beginner b{color:#d7ebfb}
+html[data-theme="dark"] .whybox{background:#211d34;border-color:#41385e;color:#d4cbed}
+html[data-theme="dark"] .warn{background:#301a23;border-color:#633140;color:#efbac7}
+html[data-theme="dark"] .supplementalTag{background:#25243a!important;border-color:#45425f!important;color:#cfc8f6!important}
+html[data-theme="dark"] .option{background:#151d29;border-color:#334056;color:#d6deeb}
+html[data-theme="dark"] .option:hover{background:#1b2535;border-color:#556583}
+html[data-theme="dark"] .option.selected{background:#242d50;border-color:#6f7fe7}
+html[data-theme="dark"] .option.correct{background:#123025;border-color:#39785d;color:#bce9d2}
+html[data-theme="dark"] .option.wrong{background:#351c26;border-color:#764255;color:#f0bec8}
+html[data-theme="dark"] .feedback.good,
+html[data-theme="dark"] .cloudStatus.good{background:#123025;color:#bce9d2;border-color:#39785d}
+html[data-theme="dark"] .feedback.bad,
+html[data-theme="dark"] .cloudStatus.bad{background:#351c26;color:#f0bec8;border-color:#764255}
+html[data-theme="dark"] .cloudStatus.info{background:#1e2748;color:#c8d1ff;border-color:#3f4e7a}
+html[data-theme="dark"] .actions{border-top-color:#2d3749}
+html[data-theme="dark"] .primary{background:#7b89f6;color:#0d1422}
+html[data-theme="dark"] .primary:hover:not(:disabled){background:#929dff}
+html[data-theme="dark"] .secondary{background:#1b2432;color:#c8d1df;border-color:#344057}
+html[data-theme="dark"] .secondary:hover:not(:disabled){background:#232e40;border-color:#44526b}
+html[data-theme="dark"] .scratchWrap{background:#111824;border-color:#303b4e}
+html[data-theme="dark"] .scratchTop,
+html[data-theme="dark"] .scratchAnswers{background:#151d2a;border-color:#2b3648}
+html[data-theme="dark"] .scratchToolbar{background:#101722;border-color:#2b3648}
+html[data-theme="dark"] .scratchQuestion{color:#d7dfed}
+html[data-theme="dark"] .toolGroup{border-right-color:#303b4e}
+html[data-theme="dark"] .toolBtn.active{background:#242d50;border-color:#6676dc;color:#c6ceff}
+html[data-theme="dark"] .exampleReference{border-color:#2b3648}
+html[data-theme="dark"] .exampleQuestionBlock{background:#101722}
+html[data-theme="dark"] .exampleSolutionToggle{background:#151d2a;color:#bdc8da;border-color:#2b3648}
+html[data-theme="dark"] .exampleSolutionToggle:hover{background:#1c2636}
+/* Keep the actual drawing surface white so the existing black pen and color palette remain correct. */
+html[data-theme="dark"] .canvasShell,
+html[data-theme="dark"] .boardStage{
+  background:
+    linear-gradient(#eef1f6 1px,transparent 1px),
+    linear-gradient(90deg,#eef1f6 1px,transparent 1px),
+    #fff;
+  background-size:24px 24px;
+}
+html[data-theme="dark"] .scratchWrap.fsMode{background:#0e141e}
+html[data-theme="dark"] .modal{background:rgba(0,0,0,.66)}
+html[data-theme="dark"] .modalBox{background:#141b27;border-color:#303b4e;color:#e7edf7}
+html[data-theme="dark"] .modalBox h2{color:#edf2fb}
+html[data-theme="dark"] select option{background:#111823;color:#e7edf7}
+html[data-theme="dark"] ::selection{background:#5365c8;color:white}
+html[data-theme="dark"] .sidebar{scrollbar-color:#3a465b transparent}
+
+.themeToggle,.mobileThemeToggle{
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.82);
+  color:var(--ink);
+  border-radius:16px;
+  cursor:pointer;
+  box-shadow:none;
+  font-weight:850;
+}
+.themeToggle{min-width:112px;padding:9px 12px;display:flex;align-items:center;justify-content:center;gap:8px;backdrop-filter:blur(10px)}
+.themeToggle:hover{background:#fff;border-color:#cbd5e9;transform:translateY(-1px)}
+.themeToggleIcon{font-size:16px;line-height:1}
+.themeToggleText{font-size:11px;white-space:nowrap}
+.mobileThemeToggle{display:none}
+.mobileDrawerActions{display:flex;align-items:center;gap:7px}
+
+@media(max-width:850px){
+  .themeToggle{display:none!important}
+  .mobileThemeToggle{display:inline-flex!important;align-items:center;justify-content:center;min-height:40px;padding:7px 10px;border-radius:12px;font-size:11px}
+  html[data-theme="dark"] .topbar{
+    background:rgba(12,17,26,.95)!important;
+    border-bottom-color:#283347!important;
+    box-shadow:0 4px 18px rgba(0,0,0,.28)!important;
+  }
+  html[data-theme="dark"] .mobileNavBtn{
+    background:#151d2a!important;
+    border-color:#344057!important;
+    color:#dce4f2!important;
+    box-shadow:none!important;
+  }
+  html[data-theme="dark"] .sidebar{
+    background:#0f151f!important;
+    border-right-color:#2b3548!important;
+    box-shadow:20px 0 52px rgba(0,0,0,.42)!important;
+  }
+  html[data-theme="dark"] .mobileDrawerHead{
+    background:linear-gradient(180deg,#0f151f 78%,rgba(15,21,31,0))!important;
+  }
+  html[data-theme="dark"] .mobileDrawerTitle{color:#e1e8f4!important}
+  html[data-theme="dark"] .mobileDrawerClose,
+  html[data-theme="dark"] .mobileThemeToggle{
+    background:#171f2c!important;
+    border-color:#344057!important;
+    color:#d9e1ee!important;
+  }
+  html[data-theme="dark"] .mobileBackdrop{background:rgba(0,0,0,.58)!important}
+}

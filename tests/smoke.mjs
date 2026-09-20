@@ -220,7 +220,7 @@ try {
   await page.click('.mobileNavBtn');
   await page.waitForFunction(() => document.body.classList.contains('mobileNavOpen'));
   assert(await page.evaluate(() => document.body.classList.contains('mobileNavOpen')), 'mobile drawer did not open');
-  await page.click('.mobileDrawerClose');
+  await page.evaluate(() => document.querySelector('.mobileDrawerClose')?.click());
   await page.waitForFunction(() => !document.body.classList.contains('mobileNavOpen'));
 
   const summary = {

@@ -365,9 +365,9 @@
     const active=!!(exam?.startedAt && !exam.endedAt);
     const finished=!!exam?.endedAt;
     const status=active
-      ? `<div class="warn"><b>Paper \${exam.code} is running.</b> The 50-minute clock continues even if you leave this lesson or refresh the page.</div>`
+      ? `<div class="warn"><b>Paper ${exam.code} is running.</b> The 50-minute clock continues even if you leave this lesson or refresh the page.</div>`
       : finished
-        ? `<div class="tip"><b>Last paper:</b> \${exam.code}. Its worked solutions are unlocked. Starting a new paper replaces it.</div>`
+        ? `<div class="tip"><b>Last paper:</b> ${exam.code}. Its worked solutions are unlocked. Starting a new paper replaces it.</div>`
         : "";
     const button=active
       ? `<button class="primary midtermBigBtn" onclick="midtermResume()">Resume paper</button><button class="secondary midtermBigBtn" onclick="midtermStartNew()">Discard &amp; generate new paper</button>`
@@ -381,16 +381,16 @@
       <div class="whybox"><p><b>Paper design:</b> 6 substantial questions, 100 marks total, approximately 49–53 minutes of intended work. The bank deliberately mixes unfamiliar first-order structure, higher-order equations, boundary/initial data, and engineering applications.</p>
       <p>The problems are original transfer problems built to match the scope and level of the course and to resemble the multi-step difficulty of harder O'Neil Chapter 1–2 work. They are not copied textbook questions.</p></div>
       <div class="warn"><b>Exam conditions:</b> closed book, no glossary, no worked solutions, no method hints. Laplace is outside this Midterm 1 simulation. The timer does not pause.</div>
-      \${status}
-      <div class="midtermStartActions">\${button}</div>`
+      ${status}
+      <div class="midtermStartActions">${button}</div>`
     };
   }
   function qScreen(problem,index){
     return {
       type:"bookproblem",
       bookSection:"Midterm 1 simulation",
-      practiceLabel:`Random paper · Question \${index+1} · \${problem.marks} marks`,
-      title:`Question \${index+1} · \${problem.marks} marks`,
+      practiceLabel:`Random paper · Question ${index+1} · ${problem.marks} marks`,
+      title:`Question ${index+1} · ${problem.marks} marks`,
       prompt:problem.prompt,
       solution:problem.solution,
       _midtermExamProblem:true,
@@ -405,11 +405,11 @@
       type:"teach",
       title:"Paper complete",
       _midtermSummary:true,
-      html:`<p><span class="supplementalTag">Paper \${exam?.code||""} · 100 marks · intended workload ≈ \${minutes} min</span></p>
+      html:`<p><span class="supplementalTag">Paper ${exam?.code||""} · 100 marks · intended workload ≈ ${minutes} min</span></p>
       <div class="whybox"><p><b>Worked solutions are now unlocked.</b> Go back through Questions 1–6 and mark your own paper using the marking guides. Do not award method marks for a result you reached by an invalid step.</p></div>
       <p>Use this as a diagnostic: record which question cost you time, which recognition step failed, and whether the mistake was mathematical, algebraic, or time-management related.</p>
       <div class="midtermStartActions"><button class="secondary midtermBigBtn" onclick="midtermReviewQuestion(1)">Review Question 1</button><button class="primary midtermBigBtn" onclick="midtermStartNew()">Generate another random paper</button></div>
-      <p class="midtermSmall">\${ended?"The timer is stopped for this paper.":""}</p>`
+      <p class="midtermSmall">${ended?"The timer is stopped for this paper.":""}</p>`
     };
   }
   function rebuild(exam){
@@ -488,7 +488,7 @@
   function formatTime(sec){
     sec=Math.max(0,Math.floor(sec));
     const m=Math.floor(sec/60), s=sec%60;
-    return `\${String(m).padStart(2,"0")}:\${String(s).padStart(2,"0")}`;
+    return `${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
   }
   function updateTimer(){
     const bar=document.getElementById("midtermTimerValue");
@@ -528,8 +528,8 @@
       const timer=document.createElement("div");
       timer.id="midtermTimerBar";
       timer.className="midtermTimerBar"+(running?" live":" ended");
-      timer.innerHTML=`<div><span class="midtermTimerLabel">MIDTERM 1 · PAPER \${exam?.code||"—"}</span><strong id="midtermTimerValue">\${running?"50:00":"ENDED"}</strong></div>
-      \${running?'<button class="midtermSubmitBtn" onclick="midtermEndExam()">End paper</button>':""}`;
+      timer.innerHTML=`<div><span class="midtermTimerLabel">MIDTERM 1 · PAPER ${exam?.code||"—"}</span><strong id="midtermTimerValue">${running?"50:00":"ENDED"}</strong></div>
+      ${running?'<button class="midtermSubmitBtn" onclick="midtermEndExam()">End paper</button>':""}`;
       card.prepend(timer);
 
       const toggle=card.querySelector("#exampleSolutionToggle");
@@ -546,7 +546,7 @@
 
       if(running && screen._midtermExamProblem){
         const counter=card.querySelector(".counter");
-        if(counter) counter.textContent=`Question \${screen._midtermIndex+1} of 6`;
+        if(counter) counter.textContent=`Question ${screen._midtermIndex+1} of 6`;
       }
       ensureTicker();
     }

@@ -585,6 +585,26 @@
     try{postProcess();}catch(e){console.error("midterm post-process",e);}
   };
 
+  // Finishing Question 6 submits the paper before the summary can be shown.
+  const baseNext=next;
+  next=function(){
+    const unit=units[state.unit];
+    if(Number(selectedCourseLesson)===9 && unit?.id===UNIT_ID && state.screen===6 && liveExam()){
+      const exam=normalizeEnd(loadExam());
+      if(exam && !exam.endedAt){
+        exam.endedAt=Date.now();
+        exam.reason="completed";
+        saveExam(exam);
+        rebuild(exam);
+        state.screen=7;
+        try{save?.();}catch(_){}
+        render();
+        return;
+      }
+    }
+    baseNext();
+  };
+
   try{renderCourseMap?.();}catch(_){}
   try{render();}catch(_){}
 })();

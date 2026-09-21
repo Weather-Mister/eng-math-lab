@@ -299,3 +299,11 @@ courseLessons[8]={
 
 if(typeof renderCourseMap==='function')renderCourseMap();
 if(typeof render==='function')render();
+
+// Load the dedicated randomized 50-minute Midterm 1 simulator after Lesson 9 registers.
+(()=>{
+  const s=document.createElement("script");
+  s.src="./midterm-simulator.js?v=4";
+  s.defer=true;
+  document.head.appendChild(s);
+})();

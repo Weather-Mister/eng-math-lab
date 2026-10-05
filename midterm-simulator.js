@@ -65,7 +65,7 @@
       <p><b>Marking guide (17):</b> Bernoulli substitution 4; linear equation 4; integration 4; IVP constant 2; interval/check 3.</p>`
     },
     {
-      id:"A4",pool:"A",minutes:7,marks:16,
+      id:"A4",pool:"A",minutes:7,marks:17,
       prompt:`<p>Solve:</p>
       <div class="eq">\\[
       y'=x(y-1)(y+2),\\qquad y(0)=0.
@@ -86,10 +86,10 @@
       <div class="whybox"><div class="eq">\\[
       \\boxed{y(x)=\\frac{2\\left(1-e^{3x^2/2}\\right)}{2+e^{3x^2/2}}}.
       \\]</div></div>
-      <p><b>Marking guide (16):</b> separation 3; partial fractions 4; integration 3; initial condition 3; explicit solution/check 3.</p>`
+      <p><b>Marking guide (17):</b> separation 3; partial fractions 4; integration 4; initial condition 3; explicit solution/check 3.</p>`
     },
     {
-      id:"A5",pool:"A",minutes:7,marks:16,
+      id:"A5",pool:"A",minutes:7,marks:17,
       prompt:`<p>Solve completely:</p>
       <div class="eq">\\[
       y=xy'+(y')^2-2y'.
@@ -101,7 +101,7 @@
       <div class="whybox"><div class="eq">\\[
       \\boxed{y=x-1-\\frac{x^2}{4}}.
       \\]</div></div>
-      <p><b>Marking guide (16):</b> line family 6; envelope condition 4; eliminate parameter 4; verification 2.</p>`
+      <p><b>Marking guide (17):</b> line family 6; envelope condition 4; eliminate parameter 4; verification 3.</p>`
     },
 
     {
@@ -290,7 +290,7 @@
       <p><b>Marking guide (17):</b> characteristic polynomial 4; homogeneous basis 4; solve constants 7; check 2.</p>`
     },
     {
-      id:"C4",pool:"C",minutes:6,marks:16,
+      id:"C4",pool:"C",minutes:6,marks:17,
       prompt:`<p>Solve:</p>
       <div class="eq">\\[
       y''+6y'+9y=0,\\qquad y(0)=2,\\qquad y'(0)=-1.
@@ -307,10 +307,10 @@
       <div class="whybox"><div class="eq">\\[
       \\boxed{y=(2+5x)e^{-3x}}.
       \\]</div></div>
-      <p><b>Marking guide (16):</b> repeated root 4; correct basis 4; constants 5; check 3.</p>`
+      <p><b>Marking guide (17):</b> repeated root 4; correct basis 4; constants 5; check 4.</p>`
     },
     {
-      id:"C5",pool:"C",minutes:7,marks:16,
+      id:"C5",pool:"C",minutes:7,marks:17,
       prompt:`<p>Solve for <span class="math">x>0</span>:</p>
       <div class="eq">\\[
       x^2y''-2xy'+2y=0.
@@ -325,7 +325,7 @@
       <div class="whybox"><div class="eq">\\[
       \\boxed{y=C_1x+C_2x^2},\\qquad x>0.
       \\]</div></div>
-      <p><b>Marking guide (16):</b> Euler trial 4; indicial equation 4; roots 3; general solution/check 5.</p>`
+      <p><b>Marking guide (17):</b> Euler trial 4; indicial equation 4; roots 3; general solution/check 6.</p>`
     },
 
     {
@@ -396,7 +396,7 @@
       <p><b>Marking guide (17):</b> homogeneous part 3; polynomial particular 4; resonant exponential particular 4; constants 4; check 2.</p>`
     },
     {
-      id:"D4",pool:"D",minutes:7,marks:16,
+      id:"D4",pool:"D",minutes:7,marks:17,
       prompt:`<p>Solve:</p>
       <div class="eq">\\[
       y''+4y=8\\sin(2x),\\qquad y(0)=0,\\qquad y'(0)=0.
@@ -413,7 +413,7 @@
       <div class="whybox"><div class="eq">\\[
       \\boxed{y=\\sin2x-2x\\cos2x}.
       \\]</div></div>
-      <p><b>Marking guide (16):</b> homogeneous part 3; resonance adjustment 5; particular coefficient 3; constants 3; check 2.</p>`
+      <p><b>Marking guide (17):</b> homogeneous part 3; resonance adjustment 5; particular coefficient 3; constants 3; check 3.</p>`
     },
     {
       id:"D5",pool:"D",minutes:9,marks:17,
@@ -640,7 +640,7 @@
       <p><b>Marking guide (17):</b> particular solution 3; Riccati substitution 4; transformed linear equation 4; constant 3; interval/check 3.</p>`
     },
     {
-      id:"F5",pool:"F",minutes:8,marks:16,
+      id:"F5",pool:"F",minutes:8,marks:17,
       prompt:`<p>Solve completely:</p>
       <div class="eq">\\[
       y=xy'+e^{y'}.
@@ -653,7 +653,7 @@
       <div class="whybox"><div class="eq">\\[
       \\boxed{y=x\\ln(-x)-x},\\qquad x<0.
       \\]</div></div>
-      <p><b>Marking guide (16):</b> line family 6; envelope condition 4; eliminate parameter 4; check/domain 2.</p>`
+      <p><b>Marking guide (17):</b> line family 6; envelope condition 4; eliminate parameter 4; check/domain 3.</p>`
     }
 
   ];

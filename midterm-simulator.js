@@ -6,8 +6,8 @@
 (()=>{
   if(typeof units==="undefined" || typeof state==="undefined") return;
 
-  const VERSION=4;
-  const KEY="engMathMidterm1RandomV4";
+  const VERSION=5;
+  const KEY="engMathMidterm1RandomV5";
   const LIMIT=50*60;
   const UNIT_ID="l9-mock";
   let tickHandle=null;
@@ -15,280 +15,647 @@
   const bank=[
     {
       id:"A1",pool:"A",minutes:8,marks:17,
-      prompt:`<p>Solve the initial-value problem completely. Include the maximal interval containing the initial point on which the IVP solution is defined.</p>
+      prompt:`<p>Solve completely:</p>
       <div class="eq">\\[
       y'=y^2-2(x+1)y+x^2+2x+2,\\qquad y(0)=2.
-      \\]</div>
-      <p>Do not assume in advance which first-order technique is intended.</p>`,
-      solution:`<p>Inspection gives a particular solution <span class="math">S=x+1</span>, since the right side becomes 1 when <span class="math">y=x+1</span>.</p>
-      <p>Put</p><div class="eq">\\[y=x+1+\\frac1z.\\]</div>
-      <p>Then <span class="math">y'=1-z'/z^2</span>. Substitution cancels the terms involving <span class="math">x</span> and gives</p>
-      <div class="eq">\\[1-\\frac{z'}{z^2}=1+\\frac1{z^2},\\]</div>
-      <p>hence <span class="math">z'=-1</span>, so <span class="math">z=C-x</span>. Therefore</p>
+      \\]</div>`,
+      solution:`<p>Try the simple particular solution <span class="math">S=x+1</span>. It works because the right side becomes 1, which equals <span class="math">S'</span>.</p>
+      <p>Set <span class="math">y=x+1+1/z</span>. Then <span class="math">y'=1-z'/z^2</span>, and substitution gives <span class="math">z'=-1</span>. Hence <span class="math">z=C-x</span> and</p>
       <div class="eq">\\[y=x+1+\\frac1{C-x}.\\]</div>
-      <p>The initial condition gives <span class="math">C=1</span>:</p>
-      <div class="whybox"><div class="eq">\\[\\boxed{y=x+1+\\frac1{1-x}}.\\]</div></div>
-      <p>The singularity is at <span class="math">x=1</span>, so the maximal interval containing 0 is <span class="math">\\boxed{(-\\infty,1)}</span>.</p>
-      <p><b>Marking guide (17):</b> useful reduction 3; transformed equation 4; solve it 4; initial condition 3; interval/check 3.</p>`
+      <p>The initial condition gives <span class="math">C=1</span>, so</p>
+      <div class="whybox"><div class="eq">\\[\\boxed{y=x+1+\\frac1{1-x}},\\qquad \\boxed{-\\infty<x<1}.\\]</div></div>
+      <p><b>Marking guide (17):</b> particular solution 3; Riccati substitution 4; transformed equation 4; initial condition 3; interval/check 3.</p>`
     },
     {
       id:"A2",pool:"A",minutes:9,marks:17,
-      prompt:`<p>Find the complete real solution family, on intervals where <span class="math">x\\ne0</span>, of</p>
-      <div class="eq">\\[(2x^2+xy+y^2)\\,dx-x(x+2y)\\,dy=0.\\]</div>
-      <p>If algebra excludes any straight-line solutions, recover and report them separately.</p>`,
-      solution:`<p>Put <span class="math">y=ux</span>, so <span class="math">y'=u+xu'</span>. Then</p>
-      <div class="eq">\\[u+xu'=\\frac{2+u+u^2}{1+2u},\\]</div>
-      <p>so</p><div class="eq">\\[x\\frac{du}{dx}=\\frac{2-u^2}{1+2u}.\\]</div>
+      prompt:`<p>Solve completely on intervals where <span class="math">x\\ne0</span>:</p>
+      <div class="eq">\\[(2x^2+xy+y^2)\\,dx-x(x+2y)\\,dy=0.\\]</div>`,
+      solution:`<p>With <span class="math">y=ux</span>, <span class="math">y'=u+xu'</span> and</p>
+      <div class="eq">\\[u+xu'=\\frac{2+u+u^2}{1+2u},\\qquad
+      x\\frac{du}{dx}=\\frac{2-u^2}{1+2u}.\\]</div>
       <p>For <span class="math">u^2\\ne2</span>,</p>
       <div class="eq">\\[\\frac{1+2u}{2-u^2}\\,du=\\frac{dx}{x}.\\]</div>
-      <p>One antiderivative is</p>
+      <p>An antiderivative is</p>
       <div class="eq">\\[\\frac1{2\\sqrt2}\\ln\\left|\\frac{\\sqrt2+u}{\\sqrt2-u}\\right|-\\ln|2-u^2|.\\]</div>
-      <p>Hence, with <span class="math">u=y/x</span>,</p>
+      <p>Thus, with <span class="math">u=y/x</span>,</p>
       <div class="whybox"><div class="eq">\\[
-      \\boxed{
-      \\frac1{2\\sqrt2}\\ln\\left|\\frac{\\sqrt2+y/x}{\\sqrt2-y/x}\\right|
-      -\\ln\\left|2-(y/x)^2\\right|=\\ln|x|+C
-      }.
+      \\boxed{\\frac1{2\\sqrt2}\\ln\\left|\\frac{\\sqrt2+y/x}{\\sqrt2-y/x}\\right|
+      -\\ln\\left|2-(y/x)^2\\right|=\\ln|x|+C}.
       \\]</div></div>
-      <p>The division by <span class="math">2-u^2</span> excluded the constant-ratio branches <span class="math">u=\\pm\\sqrt2</span>. Both satisfy the original equation, so also include</p>
-      <div class="eq">\\[\\boxed{y=\\sqrt2\,x},\\qquad \\boxed{y=-\\sqrt2\,x}.\\]</div>
-      <p><b>Marking guide (17):</b> reduction 4; separation 4; integration 5; restore variables 2; excluded branches 2.</p>`
+      <p>The divided-out values <span class="math">u=\\pm\\sqrt2</span> give two additional solutions:</p>
+      <div class="eq">\\[\\boxed{y=\\sqrt2\\,x},\\qquad \\boxed{y=-\\sqrt2\\,x}.\\]</div>
+      <p><b>Marking guide (17):</b> homogeneous substitution 4; separation 4; integration 5; restore variables 2; exceptional branches 2.</p>`
     },
+    {
+      id:"A3",pool:"A",minutes:8,marks:17,
+      prompt:`<p>Solve for <span class="math">x>0</span>:</p>
+      <div class="eq">\\[
+      y'+\\frac2x\\,y=x^3y^2,\\qquad y(1)=1.
+      \\]</div>`,
+      solution:`<p>This is Bernoulli with power 2. For the IVP branch <span class="math">y\\ne0</span>, set <span class="math">v=y^{-1}</span>. Then</p>
+      <div class="eq">\\[v'-\\frac2xv=-x^3.\\]</div>
+      <p>The integrating factor is <span class="math">x^{-2}</span>, so</p>
+      <div class="eq">\\[\\left(x^{-2}v\\right)'=-x,\\qquad
+      x^{-2}v=-\\frac{x^2}{2}+C.\\]</div>
+      <p>Hence <span class="math">v=-x^4/2+Cx^2</span>. Since <span class="math">v(1)=1</span>, <span class="math">C=3/2</span>. Therefore</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y=\\frac{2}{x^2(3-x^2)}},\\qquad
+      \\boxed{0<x<\\sqrt3}.
+      \\]</div></div>
+      <p><b>Marking guide (17):</b> Bernoulli substitution 4; linear equation 4; integration 4; IVP constant 2; interval/check 3.</p>`
+    },
+    {
+      id:"A4",pool:"A",minutes:7,marks:17,
+      prompt:`<p>Solve:</p>
+      <div class="eq">\\[
+      y'=x(y-1)(y+2),\\qquad y(0)=0.
+      \\]</div>`,
+      solution:`<p>Separate:</p>
+      <div class="eq">\\[
+      \\frac{dy}{(y-1)(y+2)}=x\\,dx.
+      \\]</div>
+      <p>Using partial fractions,</p>
+      <div class="eq">\\[
+      \\frac13\\ln\\left|\\frac{y-1}{y+2}\\right|=\\frac{x^2}{2}+C.
+      \\]</div>
+      <p>Using the initial condition in the signed exponential form gives</p>
+      <div class="eq">\\[
+      \\frac{y-1}{y+2}=-\\frac12e^{3x^2/2}.
+      \\]</div>
+      <p>Solving for <span class="math">y</span>,</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y(x)=\\frac{2\\left(1-e^{3x^2/2}\\right)}{2+e^{3x^2/2}}}.
+      \\]</div></div>
+      <p><b>Marking guide (17):</b> separation 3; partial fractions 4; integration 4; initial condition 3; explicit solution/check 3.</p>`
+    },
+    {
+      id:"A5",pool:"A",minutes:7,marks:17,
+      prompt:`<p>Solve completely:</p>
+      <div class="eq">\\[
+      y=xy'+(y')^2-2y'.
+      \\]</div>`,
+      solution:`<p>This is a Clairaut equation <span class="math">y=xp+f(p)</span> with <span class="math">p=y'</span> and <span class="math">f(p)=p^2-2p</span>.</p>
+      <p>The one-parameter line family is</p>
+      <div class="eq">\\[\\boxed{y=Cx+C^2-2C}.\\]</div>
+      <p>For the singular envelope, <span class="math">x=-f'(p)=2-2p</span>, so <span class="math">p=1-x/2</span>. Substitution gives</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y=x-1-\\frac{x^2}{4}}.
+      \\]</div></div>
+      <p><b>Marking guide (17):</b> line family 6; envelope condition 4; eliminate parameter 4; verification 3.</p>`
+    },
+
     {
       id:"B1",pool:"B",minutes:8,marks:16,
-      prompt:`<p>Solve the initial-value problem and give the maximal real interval containing <span class="math">x=1</span> on which the resulting real branch exists:</p>
-      <div class="eq">\\[(3y^2+2x)\\,dx+2xy\\,dy=0,\\qquad y(1)=1.\\]</div>`,
-      solution:`<p>Let <span class="math">M=3y^2+2x</span> and <span class="math">N=2xy</span>. Since</p>
-      <div class="eq">\\[M_y=6y,\\qquad N_x=2y,\\]</div>
-      <p>the equation is not exact. But</p>
-      <div class="eq">\\[\\frac{M_y-N_x}{N}=\\frac{4y}{2xy}=\\frac2x,\\]</div>
-      <p>so an integrating factor is <span class="math">\\mu=x^2</span>. Multiplying gives</p>
-      <div class="eq">\\[(3x^2y^2+2x^3)dx+2x^3y\,dy=0,\\]</div>
-      <p>which is exact, with potential</p>
+      prompt:`<p>Solve:</p>
+      <div class="eq">\\[
+      (3y^2+2x)\\,dx+2xy\\,dy=0,\\qquad y(1)=1.
+      \\]</div>`,
+      solution:`<p>Let <span class="math">M=3y^2+2x</span>, <span class="math">N=2xy</span>. Then <span class="math">M_y=6y</span>, <span class="math">N_x=2y</span>, so the equation is not exact. But</p>
+      <div class="eq">\\[
+      \\frac{M_y-N_x}{N}=\\frac2x,
+      \\]</div>
+      <p>hence an integrating factor is <span class="math">\\mu=x^2</span>. The multiplied equation is exact with potential</p>
       <div class="eq">\\[\\phi=x^3y^2+\\frac{x^4}{2}.\\]</div>
-      <p>Using <span class="math">y(1)=1</span> gives <span class="math">C=3/2</span>, so the positive IVP branch is</p>
+      <p>The initial condition gives <span class="math">C=3/2</span>. The positive branch through <span class="math">(1,1)</span> is</p>
       <div class="whybox"><div class="eq">\\[
-      \\boxed{y(x)=\\sqrt{\\frac{3-x^4}{2x^3}}}.
+      \\boxed{y=\\sqrt{\\frac{3-x^4}{2x^3}}},\\qquad
+      \\boxed{0<x<3^{1/4}}.
       \\]</div></div>
-      <p>For the branch through <span class="math">(1,1)</span>, we require <span class="math">x>0</span> and <span class="math">3-x^4>0</span>. Thus</p>
-      <div class="eq">\\[\\boxed{0<x<3^{1/4}}.\\]</div>
-      <p><b>Marking guide (16):</b> exactness test 2; integrating-factor test/factor 4; exact potential 4; IVP branch 3; interval 3.</p>`
+      <p><b>Marking guide (16):</b> exactness test 2; integrating factor 4; potential 4; IVP branch 3; interval 3.</p>`
     },
     {
-      id:"B2",pool:"B",minutes:7,marks:16,
-      prompt:`<p>Find the implicit solution through <span class="math">(0,\\pi)</span>, and compute the slope of that solution curve at the initial point:</p>
+      id:"B2",pool:"B",minutes:8,marks:16,
+      prompt:`<p>Solve:</p>
       <div class="eq">\\[
-      (e^x\\cos y+2xy)\\,dx+(-e^x\\sin y+x^2+3y^2)\\,dy=0.
+      (e^x\\cos y+2xy)\\,dx+(-e^x\\sin y+x^2+3y^2)\\,dy=0,
+      \\qquad y(0)=\\pi.
       \\]</div>`,
-      solution:`<p>Set</p>
-      <div class="eq">\\[M=e^x\\cos y+2xy,\\qquad N=-e^x\\sin y+x^2+3y^2.\\]</div>
-      <p>Then</p><div class="eq">\\[M_y=-e^x\\sin y+2x=N_x,\\]</div>
-      <p>so the equation is exact. Integrating <span class="math">M</span> with respect to <span class="math">x</span> gives</p>
-      <div class="eq">\\[\\phi=e^x\\cos y+x^2y+g(y).\\]</div>
-      <p>Matching <span class="math">\\phi_y=N</span> gives <span class="math">g'(y)=3y^2</span>, hence <span class="math">g=y^3</span>. At <span class="math">(0,\\pi)</span>, <span class="math">C=\\pi^3-1</span>:</p>
+      solution:`<p>With</p>
+      <div class="eq">\\[
+      M=e^x\\cos y+2xy,\\qquad N=-e^x\\sin y+x^2+3y^2,
+      \\]</div>
+      <p>we have <span class="math">M_y=-e^x\\sin y+2x=N_x</span>, so the equation is exact.</p>
+      <p>Integrating <span class="math">M</span> with respect to <span class="math">x</span>,</p>
+      <div class="eq">\\[
+      \\phi=e^x\\cos y+x^2y+g(y).
+      \\]</div>
+      <p>Matching <span class="math">\\phi_y=N</span> gives <span class="math">g'(y)=3y^2</span>, so <span class="math">g=y^3</span>. At <span class="math">(0,\\pi)</span>, <span class="math">C=\\pi^3-1</span>. Thus</p>
       <div class="whybox"><div class="eq">\\[
       \\boxed{e^x\\cos y+x^2y+y^3=\\pi^3-1}.
       \\]</div></div>
-      <p>From <span class="math">M+Ny'=0</span>,</p>
-      <div class="eq">\\[
-      y'(0)=-\\frac{M(0,\\pi)}{N(0,\\pi)}
-      =-\\frac{-1}{3\\pi^2}
-      =\\boxed{\\frac1{3\\pi^2}}.
-      \\]</div>
-      <p><b>Marking guide (16):</b> exactness 3; potential 5; initial condition 3; implicit answer 2; slope 3.</p>`
+      <p><b>Marking guide (16):</b> exactness 3; reconstruct potential 6; initial condition 3; final implicit family 2; check 2.</p>`
     },
     {
+      id:"B3",pool:"B",minutes:7,marks:16,
+      prompt:`<p>Solve for <span class="math">x>0</span>:</p>
+      <div class="eq">\\[
+      y'+\\left(\\frac1x-2\\right)y=xe^{2x},\\qquad y(1)=e^2.
+      \\]</div>`,
+      solution:`<p>The integrating factor is</p>
+      <div class="eq">\\[
+      I=e^{\\int(1/x-2)\\,dx}=xe^{-2x}.
+      \\]</div>
+      <p>Therefore</p>
+      <div class="eq">\\[
+      (xe^{-2x}y)'=x^2,
+      \\]</div>
+      <p>so <span class="math">xe^{-2x}y=x^3/3+C</span>. Hence</p>
+      <div class="eq">\\[
+      y=e^{2x}\\left(\\frac{x^2}{3}+\\frac{C}{x}\\right).
+      \\]</div>
+      <p>The initial condition gives <span class="math">C=2/3</span>:</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y=e^{2x}\\left(\\frac{x^2}{3}+\\frac{2}{3x}\\right)},\\qquad x>0.
+      \\]</div></div>
+      <p><b>Marking guide (16):</b> standard form/IF 4; product derivative 4; integration 3; IVP constant 3; check 2.</p>`
+    },
+    {
+      id:"B4",pool:"B",minutes:7,marks:16,
+      prompt:`<p>Solve:</p>
+      <div class="eq">\\[
+      (2xy+\\cos x)\\,dx+(x^2+3y^2)\\,dy=0,\\qquad y(0)=1.
+      \\]</div>`,
+      solution:`<p>Here</p>
+      <div class="eq">\\[
+      M_y=2x=N_x,
+      \\]</div>
+      <p>so the equation is exact. Integrating <span class="math">M</span> with respect to <span class="math">x</span>,</p>
+      <div class="eq">\\[
+      \\phi=x^2y+\\sin x+g(y).
+      \\]</div>
+      <p>Matching <span class="math">\\phi_y=x^2+g'(y)=x^2+3y^2</span> gives <span class="math">g=y^3</span>. The initial condition gives <span class="math">C=1</span>. Therefore</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{x^2y+\\sin x+y^3=1}.
+      \\]</div></div>
+      <p><b>Marking guide (16):</b> exactness 3; potential 6; initial condition 3; final answer/check 4.</p>`
+    },
+    {
+      id:"B5",pool:"B",minutes:8,marks:16,
+      prompt:`<p>Solve on the branch with <span class="math">y>0</span>:</p>
+      <div class="eq">\\[
+      \\left(y+\\frac{2x}{y}\\right)dx+2x\\,dy=0,\\qquad y(1)=1.
+      \\]</div>`,
+      solution:`<p>Take <span class="math">M=y+2x/y</span> and <span class="math">N=2x</span>. Then</p>
+      <div class="eq">\\[
+      \\frac{M_y-N_x}{M}=-\\frac1y,
+      \\]</div>
+      <p>so an integrating factor depending only on <span class="math">y</span> is</p>
+      <div class="eq">\\[
+      \\mu(y)=e^{-\\int(-1/y)\\,dy}=y.
+      \\]</div>
+      <p>After multiplying,</p>
+      <div class="eq">\\[
+      (y^2+2x)\\,dx+2xy\\,dy=0
+      \\]</div>
+      <p>is exact with potential <span class="math">\\phi=xy^2+x^2</span>. The initial condition gives <span class="math">C=2</span>, so</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y=\\sqrt{\\frac{2-x^2}{x}}},\\qquad
+      \\boxed{0<x<\\sqrt2}.
+      \\]</div></div>
+      <p><b>Marking guide (16):</b> integrating-factor test 4; factor 3; potential 4; IVP branch 3; interval 2.</p>`
+    },
+
+    {
       id:"C1",pool:"C",minutes:10,marks:17,
-      prompt:`<p>Solve the initial-value problem:</p>
+      prompt:`<p>Solve:</p>
       <div class="eq">\\[
       y^{(4)}-4y^{(3)}+8y''-8y'+4y=0,
       \\]</div>
       <div class="eq">\\[
-      y(0)=1,\\qquad y'(0)=2,\\qquad y''(0)=4,\\qquad y^{(3)}(0)=4.
+      y(0)=1,\\quad y'(0)=2,\\quad y''(0)=4,\\quad y^{(3)}(0)=4.
       \\]</div>`,
-      solution:`<p>The characteristic polynomial factors as</p>
+      solution:`<p>The characteristic polynomial is</p>
       <div class="eq">\\[
-      r^4-4r^3+8r^2-8r+4=(r^2-2r+2)^2=((r-1)^2+1)^2.
+      r^4-4r^3+8r^2-8r+4=((r-1)^2+1)^2.
       \\]</div>
-      <p>Thus <span class="math">1\\pm i</span> are both double roots and</p>
+      <p>Thus <span class="math">1\\pm i</span> are double roots:</p>
       <div class="eq">\\[
       y=e^x[(A+Bx)\\cos x+(C+Dx)\\sin x].
       \\]</div>
-      <p>At zero, successive derivatives give</p>
+      <p>At zero,</p>
       <div class="eq">\\[
-      y(0)=A,\quad y'(0)=A+B+C,\quad
-      y''(0)=2B+2C+2D,\quad y^{(3)}(0)=-2A+2C+6D.
+      y=A,\\quad y'=A+B+C,\\quad y''=2B+2C+2D,\\quad y^{(3)}=-2A+2C+6D.
       \\]</div>
-      <p>The data give <span class="math">A=1</span>, <span class="math">B+C=1</span>, <span class="math">B+C+D=2</span>, and <span class="math">-2+2C+6D=4</span>. Hence <span class="math">D=1</span>, <span class="math">C=0</span>, <span class="math">B=1</span>.</p>
+      <p>The data give <span class="math">A=1,B=1,C=0,D=1</span>. Hence</p>
       <div class="whybox"><div class="eq">\\[
       \\boxed{y=e^x[(1+x)\\cos x+x\\sin x]}.
       \\]</div></div>
-      <p><b>Marking guide (17):</b> polynomial/factorization 4; repeated-complex basis 5; four initial conditions 6; final answer/check 2.</p>`
+      <p><b>Marking guide (17):</b> factorization 4; repeated-complex basis 5; constants 6; check 2.</p>`
     },
     {
       id:"C2",pool:"C",minutes:8,marks:17,
-      prompt:`<p>On the real line, one nonzero solution of the equation below is <span class="math">y_1=x^2+1</span>. Find a second linearly independent solution and hence the general solution.</p>
+      prompt:`<p>Solve on <span class="math">\\mathbb R</span>:</p>
       <div class="eq">\\[
-      y''-\\frac{2}{x^2+1}y=0.
+      (1+x^2)y''-2xy'+2y=0.
+      \\]</div>`,
+      solution:`<p>Inspection gives one solution <span class="math">y_1=x</span>. In standard form,</p>
+      <div class="eq">\\[
+      y''-\\frac{2x}{1+x^2}y'+\\frac{2}{1+x^2}y=0,
       \\]</div>
-      <p>Your work must make clear why the second solution is independent of <span class="math">y_1</span>.</p>`,
-      solution:`<p>The equation is in standard form with <span class="math">P(x)=0</span>. Reduction of order gives</p>
+      <p>so <span class="math">P=-2x/(1+x^2)</span>. Reduction of order gives</p>
       <div class="eq">\\[
       y_2=y_1\\int\\frac{e^{-\\int Pdx}}{y_1^2}\\,dx
-      =(x^2+1)\\int\\frac{dx}{(x^2+1)^2}.
+      =x\\int\\frac{1+x^2}{x^2}\\,dx
+      =x\\left(-\\frac1x+x\\right)=x^2-1.
       \\]</div>
-      <p>Using</p>
-      <div class="eq">\\[
-      \\int\\frac{dx}{(x^2+1)^2}
-      =\\frac{x}{2(x^2+1)}+\\frac12\\arctan x,
-      \\]</div>
-      <p>and rescaling by 2, take</p>
-      <div class="eq">\\[
-      y_2=x+(x^2+1)\\arctan x.
-      \\]</div>
-      <p>For the unscaled reduction-of-order choice, <span class="math">W=y_1^2u'=1</span>; after multiplying <span class="math">y_2</span> by 2, the Wronskian is the nonzero constant 2. Therefore the pair is independent.</p>
+      <p>The Wronskian is <span class="math">W=x^2+1\\ne0</span>, so the two solutions are independent. Thus</p>
       <div class="whybox"><div class="eq">\\[
-      \\boxed{y=C_1(x^2+1)+C_2[x+(x^2+1)\\arctan x]}.
+      \\boxed{y=C_1x+C_2(x^2-1)}.
       \\]</div></div>
-      <p><b>Marking guide (17):</b> reduction setup 5; integral 5; second solution 3; independence 2; general family 2.</p>`
+      <p><b>Marking guide (17):</b> find first solution 3; standard form 3; reduction formula 5; second solution 3; general family/check 3.</p>`
     },
     {
+      id:"C3",pool:"C",minutes:8,marks:17,
+      prompt:`<p>Solve:</p>
+      <div class="eq">\\[
+      y'''-y''-4y'+4y=0,\\qquad
+      y(0)=1,\\quad y'(0)=9,\\quad y''(0)=1.
+      \\]</div>`,
+      solution:`<p>The characteristic polynomial factors as</p>
+      <div class="eq">\\[
+      r^3-r^2-4r+4=(r-1)(r-2)(r+2).
+      \\]</div>
+      <p>Hence</p>
+      <div class="eq">\\[
+      y=Ae^x+Be^{2x}+Ce^{-2x}.
+      \\]</div>
+      <p>The initial data give</p>
+      <div class="eq">\\[
+      A+B+C=1,\\qquad A+2B-2C=9,\\qquad A+4B+4C=1.
+      \\]</div>
+      <p>Solving yields <span class="math">A=1,B=2,C=-2</span>. Therefore</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y=e^x+2e^{2x}-2e^{-2x}}.
+      \\]</div></div>
+      <p><b>Marking guide (17):</b> characteristic polynomial 4; homogeneous basis 4; solve constants 7; check 2.</p>`
+    },
+    {
+      id:"C4",pool:"C",minutes:6,marks:17,
+      prompt:`<p>Solve:</p>
+      <div class="eq">\\[
+      y''+6y'+9y=0,\\qquad y(0)=2,\\qquad y'(0)=-1.
+      \\]</div>`,
+      solution:`<p>The characteristic equation is <span class="math">(r+3)^2=0</span>, so</p>
+      <div class="eq">\\[
+      y=(C_1+C_2x)e^{-3x}.
+      \\]</div>
+      <p>From <span class="math">y(0)=2</span>, <span class="math">C_1=2</span>. Also</p>
+      <div class="eq">\\[
+      y'(0)=C_2-3C_1=-1,
+      \\]</div>
+      <p>so <span class="math">C_2=5</span>. Therefore</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y=(2+5x)e^{-3x}}.
+      \\]</div></div>
+      <p><b>Marking guide (17):</b> repeated root 4; correct basis 4; constants 5; check 4.</p>`
+    },
+    {
+      id:"C5",pool:"C",minutes:7,marks:17,
+      prompt:`<p>Solve for <span class="math">x>0</span>:</p>
+      <div class="eq">\\[
+      x^2y''-2xy'+2y=0.
+      \\]</div>`,
+      solution:`<p>Try <span class="math">y=x^m</span>. Then</p>
+      <div class="eq">\\[
+      m(m-1)-2m+2=0
+      \\quad\\Longrightarrow\\quad
+      (m-1)(m-2)=0.
+      \\]</div>
+      <p>Thus the two independent solutions are <span class="math">x</span> and <span class="math">x^2</span>, giving</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y=C_1x+C_2x^2},\\qquad x>0.
+      \\]</div></div>
+      <p><b>Marking guide (17):</b> Euler trial 4; indicial equation 4; roots 3; general solution/check 6.</p>`
+    },
+
+    {
       id:"D1",pool:"D",minutes:8,marks:17,
-      prompt:`<p>Solve the initial-value problem:</p>
+      prompt:`<p>Solve:</p>
       <div class="eq">\\[
       y''-2y'+y=e^x(x^2+1),\\qquad y(0)=0,\\qquad y'(0)=1.
+      \\]</div>`,
+      solution:`<p>The homogeneous equation has <span class="math">(r-1)^2=0</span>, so <span class="math">y_h=e^x(C_1+C_2x)</span>.</p>
+      <p>Write <span class="math">y=e^xv</span>. Since the operator is <span class="math">(D-1)^2</span>,</p>
+      <div class="eq">\\[
+      (D-1)^2(e^xv)=e^xv'',
       \\]</div>
-      <p>Show enough work to justify the form of every term in your answer.</p>`,
-      solution:`<p>The homogeneous polynomial is <span class="math">(r-1)^2</span>, so <span class="math">y_h=e^x(C_1+C_2x)</span>.</p>
-      <p>Write <span class="math">y=e^xv</span>. Because the operator is <span class="math">(D-1)^2</span>,</p>
-      <div class="eq">\\[(D-1)^2(e^xv)=e^xv''.\\]</div>
-      <p>Thus</p><div class="eq">\\[v''=x^2+1.\\]</div>
-      <p>Integrating twice,</p>
+      <p>hence <span class="math">v''=x^2+1</span>. Integrating twice,</p>
       <div class="eq">\\[
       v=\\frac{x^4}{12}+\\frac{x^2}{2}+C_2x+C_1.
       \\]</div>
-      <p>The data give <span class="math">C_1=0</span> and <span class="math">C_2=1</span>. Hence</p>
+      <p>The initial data give <span class="math">C_1=0,C_2=1</span>. Therefore</p>
       <div class="whybox"><div class="eq">\\[
       \\boxed{y=e^x\\left(x+\\frac{x^2}{2}+\\frac{x^4}{12}\\right)}.
       \\]</div></div>
-      <p><b>Marking guide (17):</b> homogeneous part 3; recognize/handle overlap 4; particular calculation 5; IVP constants 3; verification 2.</p>`
+      <p><b>Marking guide (17):</b> homogeneous part 3; resonance/operator reduction 4; particular solution 5; IVP constants 3; check 2.</p>`
     },
     {
       id:"D2",pool:"D",minutes:10,marks:17,
-      prompt:`<p>On <span class="math">(-\\pi/2,\\pi/2)</span>, solve</p>
+      prompt:`<p>Solve on <span class="math">(-\\pi/2,\\pi/2)</span>:</p>
       <div class="eq">\\[
       y''+y=\\tan x,\\qquad y(0)=1,\\qquad y'(0)=0.
-      \\]</div>
-      <p>Give a real-valued answer valid on the stated interval.</p>`,
+      \\]</div>`,
       solution:`<p>A homogeneous basis is <span class="math">y_1=\\cos x</span>, <span class="math">y_2=\\sin x</span>, with <span class="math">W=1</span>. Variation of parameters gives</p>
       <div class="eq">\\[
       u_1'=-\\sin x\\tan x=\\cos x-\\sec x,\\qquad
       u_2'=\\cos x\\tan x=\\sin x.
       \\]</div>
-      <p>So we may take</p>
+      <p>Take</p>
       <div class="eq">\\[
       u_1=\\sin x-\\ln(\\sec x+\\tan x),\\qquad u_2=-\\cos x.
       \\]</div>
-      <p>The cross terms cancel, leaving</p>
-      <div class="eq">\\[
-      y_p=-\\cos x\\ln(\\sec x+\\tan x).
-      \\]</div>
-      <p>Thus</p>
+      <p>The cross terms cancel, leaving <span class="math">y_p=-\\cos x\\ln(\\sec x+\\tan x)</span>. Therefore</p>
       <div class="eq">\\[
       y=C_1\\cos x+C_2\\sin x-\\cos x\\ln(\\sec x+\\tan x).
       \\]</div>
-      <p>At <span class="math">x=0</span>, the logarithm is zero, so <span class="math">C_1=1</span>. The particular term has derivative -1 at zero, so <span class="math">C_2=1</span>.</p>
+      <p>The initial data give <span class="math">C_1=1,C_2=1</span>. Thus</p>
       <div class="whybox"><div class="eq">\\[
       \\boxed{y=\\cos x+\\sin x-\\cos x\\ln(\\sec x+\\tan x)}.
       \\]</div></div>
-      <p><b>Marking guide (17):</b> homogeneous basis/Wronskian 3; parameter equations 5; integrations/cancellation 5; IVP constants 3; interval 1.</p>`
+      <p><b>Marking guide (17):</b> basis/Wronskian 3; parameter equations 5; integrations 5; IVP constants 3; interval 1.</p>`
     },
     {
+      id:"D3",pool:"D",minutes:8,marks:17,
+      prompt:`<p>Solve:</p>
+      <div class="eq">\\[
+      y''-3y'+2y=4x+e^{2x},\\qquad y(0)=0,\\qquad y'(0)=1.
+      \\]</div>`,
+      solution:`<p>The homogeneous roots are <span class="math">1,2</span>, so</p>
+      <div class="eq">\\[
+      y_h=C_1e^x+C_2e^{2x}.
+      \\]</div>
+      <p>For <span class="math">4x</span>, try <span class="math">Ax+B</span>; this gives <span class="math">A=2,B=3</span>. Because <span class="math">e^{2x}</span> resonates with a homogeneous term, try <span class="math">Cxe^{2x}</span>; substitution gives <span class="math">C=1</span>.</p>
+      <p>Thus</p>
+      <div class="eq">\\[
+      y=C_1e^x+C_2e^{2x}+2x+3+xe^{2x}.
+      \\]</div>
+      <p>The data give <span class="math">C_1=-4,C_2=1</span>. Therefore</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y=-4e^x+e^{2x}+2x+3+xe^{2x}}.
+      \\]</div></div>
+      <p><b>Marking guide (17):</b> homogeneous part 3; polynomial particular 4; resonant exponential particular 4; constants 4; check 2.</p>`
+    },
+    {
+      id:"D4",pool:"D",minutes:7,marks:17,
+      prompt:`<p>Solve:</p>
+      <div class="eq">\\[
+      y''+4y=8\\sin(2x),\\qquad y(0)=0,\\qquad y'(0)=0.
+      \\]</div>`,
+      solution:`<p>The homogeneous solution is <span class="math">C_1\\cos2x+C_2\\sin2x</span>. Since the forcing is resonant, try <span class="math">y_p=Ax\\cos2x</span>. Because</p>
+      <div class="eq">\\[
+      (x\\cos2x)''+4x\\cos2x=-4\\sin2x,
+      \\]</div>
+      <p>we need <span class="math">A=-2</span>. Thus</p>
+      <div class="eq">\\[
+      y=C_1\\cos2x+C_2\\sin2x-2x\\cos2x.
+      \\]</div>
+      <p>The initial conditions give <span class="math">C_1=0,C_2=1</span>, so</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y=\\sin2x-2x\\cos2x}.
+      \\]</div></div>
+      <p><b>Marking guide (17):</b> homogeneous part 3; resonance adjustment 5; particular coefficient 3; constants 3; check 3.</p>`
+    },
+    {
+      id:"D5",pool:"D",minutes:9,marks:17,
+      prompt:`<p>Solve on <span class="math">(-\\pi/2,\\pi/2)</span>:</p>
+      <div class="eq">\\[
+      y''+y=\\sec x.
+      \\]</div>`,
+      solution:`<p>Use <span class="math">y_1=\\cos x</span>, <span class="math">y_2=\\sin x</span>, <span class="math">W=1</span>. Variation of parameters gives</p>
+      <div class="eq">\\[
+      y_p=-\\cos x\\int \\tan x\\,dx+\\sin x\\int1\\,dx.
+      \\]</div>
+      <p>Since <span class="math">\\int\\tan x\\,dx=-\\ln(\\cos x)</span> on the stated interval,</p>
+      <div class="eq">\\[
+      y_p=\\cos x\\ln(\\cos x)+x\\sin x.
+      \\]</div>
+      <p>Therefore</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y=C_1\\cos x+C_2\\sin x+\\cos x\\ln(\\cos x)+x\\sin x}.
+      \\]</div></div>
+      <p><b>Marking guide (17):</b> basis/Wronskian 3; variation formulas 5; integrals 5; general solution 2; check/domain 2.</p>`
+    },
+
+    {
       id:"E1",pool:"E",minutes:9,marks:16,
-      prompt:`<p>For <span class="math">x>0</span>, solve the initial-value problem</p>
+      prompt:`<p>Solve for <span class="math">x>0</span>:</p>
       <div class="eq">\\[
       x^2y''-3xy'+4y=x^2\\ln x,\\qquad y(1)=1,\\qquad y'(1)=0.
       \\]</div>`,
-      solution:`<p>Set <span class="math">t=\\ln x</span> and <span class="math">Y(t)=y(e^t)</span>. Then</p>
-      <div class="eq">\\[xy'=Y',\\qquad x^2y''=Y''-Y'.\\]</div>
-      <p>The equation becomes</p>
+      solution:`<p>Set <span class="math">t=\\ln x</span>, <span class="math">Y(t)=y(e^t)</span>. Then <span class="math">xy'=Y'</span> and <span class="math">x^2y''=Y''-Y'</span>. The equation becomes</p>
       <div class="eq">\\[
       Y''-4Y'+4Y=e^{2t}t.
       \\]</div>
-      <p>The left side is <span class="math">(D-2)^2Y</span>. Put <span class="math">Y=e^{2t}V</span>; then <span class="math">(D-2)^2Y=e^{2t}V''</span>, so</p>
-      <div class="eq">\\[V''=t.\\]</div>
-      <p>Hence <span class="math">V=t^3/6+C_2t+C_1</span>. Returning to <span class="math">x</span>,</p>
+      <p>Put <span class="math">Y=e^{2t}V</span>. Then <span class="math">V''=t</span>, so</p>
+      <div class="eq">\\[
+      V=\\frac{t^3}{6}+C_2t+C_1.
+      \\]</div>
+      <p>Hence</p>
       <div class="eq">\\[
       y=x^2\\left(C_1+C_2\\ln x+\\frac{(\\ln x)^3}{6}\\right).
       \\]</div>
-      <p>The conditions give <span class="math">C_1=1</span> and <span class="math">C_2=-2</span>.</p>
+      <p>The conditions give <span class="math">C_1=1,C_2=-2</span>. Therefore</p>
       <div class="whybox"><div class="eq">\\[
-      \\boxed{y=x^2\\left(1-2\\ln x+\\frac{(\\ln x)^3}{6}\\right)},\\qquad x>0.
+      \\boxed{y=x^2\\left(1-2\\ln x+\\frac{(\\ln x)^3}{6}\\right)}.
       \\]</div></div>
-      <p><b>Marking guide (16):</b> change of variable identities 4; transformed ODE 3; solve transformed equation 4; restore x 2; initial data 3.</p>`
+      <p><b>Marking guide (16):</b> Euler transform 4; transformed equation 3; solve 4; restore x 2; initial data 3.</p>`
     },
     {
       id:"E2",pool:"E",minutes:8,marks:16,
-      prompt:`<p>Let <span class="math">b</span> be a real constant. Determine exactly for which values of <span class="math">b</span> the boundary-value problem has a solution. For every admissible <span class="math">b</span>, give <em>all</em> solutions and state whether the solution is unique.</p>
+      prompt:`<p>Solve:</p>
       <div class="eq">\\[
-      y''+4y=8\\cos(2x),\\qquad y(0)=0,\\qquad y(\\pi/2)=b.
+      y''+4y=8\\cos(2x),\\qquad y(0)=0,\\qquad y(\\pi/4)=1.
       \\]</div>`,
-      solution:`<p>The complementary solution is</p>
-      <div class="eq">\\[y_h=A\\cos2x+B\\sin2x.\\]</div>
-      <p>Because the forcing is resonant, a particular solution is <span class="math">y_p=2x\\sin2x</span>. Therefore</p>
-      <div class="eq">\\[y=A\\cos2x+B\\sin2x+2x\\sin2x.\\]</div>
-      <p>The condition <span class="math">y(0)=0</span> gives <span class="math">A=0</span>. At <span class="math">x=\\pi/2</span>, both sine terms vanish, so every remaining solution has</p>
-      <div class="eq">\\[y(\\pi/2)=0.\\]</div>
-      <div class="whybox">
-      <p>If <span class="math">\\boxed{b\\ne0}</span>, there is <b>no solution</b>.</p>
-      <p>If <span class="math">\\boxed{b=0}</span>, there are <b>infinitely many</b> solutions:</p>
-      <div class="eq">\\[\\boxed{y=B\\sin2x+2x\\sin2x,\\qquad B\\in\\mathbb R}.\\]</div>
-      </div>
-      <p><b>Marking guide (16):</b> homogeneous family 3; resonant particular 4; first boundary 2; compatibility at second boundary 4; classify solution count 3.</p>`
+      solution:`<p>The homogeneous solution is</p>
+      <div class="eq">\\[
+      y_h=A\\cos2x+B\\sin2x.
+      \\]</div>
+      <p>The forcing resonates with <span class="math">\\cos2x</span>. A particular solution is <span class="math">y_p=2x\\sin2x</span>. Therefore</p>
+      <div class="eq">\\[
+      y=A\\cos2x+B\\sin2x+2x\\sin2x.
+      \\]</div>
+      <p>From <span class="math">y(0)=0</span>, <span class="math">A=0</span>. At <span class="math">x=\\pi/4</span>,</p>
+      <div class="eq">\\[
+      B+\\frac{\\pi}{2}=1,
+      \\]</div>
+      <p>so <span class="math">B=1-\\pi/2</span>. Hence</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y=\\left(1-\\frac{\\pi}{2}\\right)\\sin2x+2x\\sin2x}.
+      \\]</div></div>
+      <p><b>Marking guide (16):</b> homogeneous solution 3; resonant particular 5; boundary constants 5; check 3.</p>`
     },
+    {
+      id:"E3",pool:"E",minutes:7,marks:16,
+      prompt:`<p>Solve for <span class="math">x>0</span>:</p>
+      <div class="eq">\\[
+      x^2y''-5xy'+9y=0,\\qquad y(1)=2,\\qquad y'(1)=5.
+      \\]</div>`,
+      solution:`<p>Trying <span class="math">y=x^m</span> gives</p>
+      <div class="eq">\\[
+      m(m-1)-5m+9=(m-3)^2=0.
+      \\]</div>
+      <p>Therefore</p>
+      <div class="eq">\\[
+      y=x^3(C_1+C_2\\ln x).
+      \\]</div>
+      <p>At <span class="math">x=1</span>, <span class="math">C_1=2</span> and <span class="math">y'(1)=3C_1+C_2=5</span>, so <span class="math">C_2=-1</span>. Thus</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y=x^3(2-\\ln x)}.
+      \\]</div></div>
+      <p><b>Marking guide (16):</b> indicial equation 4; repeated-root Euler basis 5; constants 4; check/domain 3.</p>`
+    },
+    {
+      id:"E4",pool:"E",minutes:8,marks:16,
+      prompt:`<p>Solve for <span class="math">x>0</span>:</p>
+      <div class="eq">\\[
+      x^2y''-xy'+5y=0,\\qquad y(1)=1,\\qquad y'(1)=0.
+      \\]</div>`,
+      solution:`<p>The indicial equation is</p>
+      <div class="eq">\\[
+      m(m-1)-m+5=m^2-2m+5=0,
+      \\]</div>
+      <p>with roots <span class="math">1\\pm2i</span>. Thus</p>
+      <div class="eq">\\[
+      y=x\\left[C_1\\cos(2\\ln x)+C_2\\sin(2\\ln x)\\right].
+      \\]</div>
+      <p>The conditions give <span class="math">C_1=1</span> and <span class="math">C_1+2C_2=0</span>, hence <span class="math">C_2=-1/2</span>. Therefore</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y=x\\left[\\cos(2\\ln x)-\\frac12\\sin(2\\ln x)\\right]}.
+      \\]</div></div>
+      <p><b>Marking guide (16):</b> indicial equation 4; complex-root Euler form 5; constants 4; check/domain 3.</p>`
+    },
+    {
+      id:"E5",pool:"E",minutes:7,marks:16,
+      prompt:`<p>Solve for <span class="math">x>0</span>:</p>
+      <div class="eq">\\[
+      x^2y''+xy'-y=x^2,\\qquad y(1)=1,\\qquad y'(1)=0.
+      \\]</div>`,
+      solution:`<p>The homogeneous indicial equation is <span class="math">m^2-1=0</span>, so</p>
+      <div class="eq">\\[
+      y_h=C_1x+\\frac{C_2}{x}.
+      \\]</div>
+      <p>For the forcing, try <span class="math">y_p=Ax^2</span>. Substitution gives <span class="math">3Ax^2=x^2</span>, so <span class="math">A=1/3</span>. Hence</p>
+      <div class="eq">\\[
+      y=C_1x+\\frac{C_2}{x}+\\frac{x^2}{3}.
+      \\]</div>
+      <p>The initial data give <span class="math">C_1=0,C_2=2/3</span>. Therefore</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y=\\frac{2}{3x}+\\frac{x^2}{3}}.
+      \\]</div></div>
+      <p><b>Marking guide (16):</b> homogeneous Euler solution 5; particular 4; constants 4; check/domain 3.</p>`
+    },
+
     {
       id:"F1",pool:"F",minutes:9,marks:17,
-      prompt:`<p>A <span class="math">1\\,\\mathrm{kg}</span> mass is attached to a spring with stiffness <span class="math">9\\,\\mathrm{N/m}</span> and a viscous damper with coefficient <span class="math">2\\,\\mathrm{N\\,s/m}</span>. It is driven by <span class="math">10\\cos(3t)\\,\\mathrm N</span>. Displacement is measured from equilibrium. At <span class="math">t=0</span>, the mass is at equilibrium and at rest.</p>
-      <p>(a) Build the governing IVP. (b) Solve for the displacement. (c) Classify the free motion and decide whether the forced response exhibits unbounded resonance.</p>`,
-      solution:`<p>Newton's law gives</p>
+      prompt:`<p>Solve:</p>
       <div class="eq">\\[
-      \\boxed{y''+2y'+9y=10\\cos3t},\\qquad y(0)=0,\\qquad y'(0)=0.
+      y^{(5)}-2y^{(4)}+2y^{(3)}-2y''+y'=0,
       \\]</div>
-      <p>The homogeneous roots are <span class="math">-1\\pm2\\sqrt2\,i</span>, hence</p>
       <div class="eq">\\[
-      y_h=e^{-t}[C_1\\cos(2\\sqrt2\,t)+C_2\\sin(2\\sqrt2\,t)].
+      y(0)=4,\\quad y'(0)=0,\\quad y''(0)=-3,\\quad y^{(3)}(0)=-2,\\quad y^{(4)}(0)=-1.
+      \\]</div>`,
+      solution:`<p>The characteristic polynomial factors as</p>
+      <div class="eq">\\[
+      r(r-1)^2(r^2+1)=0.
       \\]</div>
-      <p>Try <span class="math">y_p=A\\cos3t+B\\sin3t</span>. The <span class="math">y''+9y</span> terms cancel, leaving</p>
-      <div class="eq">\\[-6A\\sin3t+6B\\cos3t=10\\cos3t,\\]</div>
-      <p>so <span class="math">A=0</span>, <span class="math">B=5/3</span>. The initial data give <span class="math">C_1=0</span> and <span class="math">C_2=-5/(2\\sqrt2)</span>.</p>
-      <div class="whybox"><div class="eq">\\[
-      \\boxed{y(t)=-\\frac5{2\\sqrt2}e^{-t}\\sin(2\\sqrt2\,t)+\\frac53\\sin3t}.
-      \\]</div></div>
-      <p>Since <span class="math">c^2-4mk=4-36<0</span> and <span class="math">c>0</span>, the free motion is <b>underdamped</b>. The forcing frequency equals the undamped natural frequency, but positive damping keeps the steady-state amplitude finite, so there is <b>no unbounded resonance</b>.</p>
-      <p><b>Marking guide (17):</b> model/ICs 3; homogeneous response 4; forced response 5; constants 3; interpretation 2.</p>`
-    },
-    {
-      id:"F2",pool:"F",minutes:9,marks:17,
-      prompt:`<p>A series RLC circuit has <span class="math">L=1\\,\\mathrm H</span>, <span class="math">R=4\\,\\Omega</span>, <span class="math">C=1/13\\,\\mathrm F</span>, and applied voltage <span class="math">E(t)=10e^{-2t}\\,\\mathrm V</span>. Initially the capacitor is uncharged and the current is zero.</p>
-      <p>Using capacitor charge <span class="math">q(t)</span> as the dependent variable, (a) derive the IVP, (b) solve for <span class="math">q(t)</span>, and (c) obtain the current <span class="math">i(t)</span>.</p>`,
-      solution:`<p>Kirchhoff's voltage law is</p>
-      <div class="eq">\\[Lq''+Rq'+\\frac1Cq=E(t),\\qquad i=q'.\\]</div>
       <p>Thus</p>
       <div class="eq">\\[
-      \\boxed{q''+4q'+13q=10e^{-2t}},\\qquad q(0)=0,\\qquad q'(0)=0.
+      y=C_0+e^x(C_1+C_2x)+C_3\\cos x+C_4\\sin x.
       \\]</div>
-      <p>The homogeneous roots are <span class="math">-2\\pm3i</span>:</p>
-      <div class="eq">\\[q_h=e^{-2t}(C_1\\cos3t+C_2\\sin3t).\\]</div>
-      <p>Try <span class="math">q_p=Ae^{-2t}</span>. Substitution gives <span class="math">9Ae^{-2t}=10e^{-2t}</span>, so <span class="math">A=10/9</span>. The initial data give <span class="math">C_1=-10/9</span>, <span class="math">C_2=0</span>.</p>
+      <p>Substituting the five initial conditions gives <span class="math">C_0=1,C_1=1,C_2=-1,C_3=2,C_4=0</span>. Hence</p>
       <div class="whybox"><div class="eq">\\[
-      \\boxed{q(t)=\\frac{10}{9}e^{-2t}(1-\\cos3t)}.
+      \\boxed{y=1+e^x(1-x)+2\\cos x}.
       \\]</div></div>
-      <p>Differentiating,</p>
+      <p><b>Marking guide (17):</b> factorization 5; correct five-function basis 5; constants 5; check 2.</p>`
+    },
+    {
+      id:"F2",pool:"F",minutes:8,marks:17,
+      prompt:`<p>Solve for <span class="math">x>0</span>:</p>
       <div class="eq">\\[
-      \\boxed{i(t)=q'(t)=\\frac{10}{9}e^{-2t}\\left[-2(1-\\cos3t)+3\\sin3t\\right]}.
+      y'=\\frac{x+y}{x-y},\\qquad y(1)=0.
+      \\]</div>`,
+      solution:`<p>Set <span class="math">y=ux</span>. Then</p>
+      <div class="eq">\\[
+      u+xu'=\\frac{1+u}{1-u},
       \\]</div>
-      <p><b>Marking guide (17):</b> circuit model/ICs 4; homogeneous response 3; particular response 4; constants 3; current 3.</p>`
+      <p>so</p>
+      <div class="eq">\\[
+      \\frac{1-u}{1+u^2}\\,du=\\frac{dx}{x}.
+      \\]</div>
+      <p>Integrating,</p>
+      <div class="eq">\\[
+      \\arctan u-\\frac12\\ln(1+u^2)=\\ln x+C.
+      \\]</div>
+      <p>The initial condition gives <span class="math">C=0</span>. Restoring <span class="math">u=y/x</span>, the IVP solution is implicitly defined by</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{\\arctan\\!\\left(\\frac yx\\right)
+      -\\frac12\\ln\\!\\left(1+\\frac{y^2}{x^2}\\right)=\\ln x}.
+      \\]</div></div>
+      <p><b>Marking guide (17):</b> homogeneous substitution 4; separable reduction 4; integration 5; initial condition 2; restore variables/check 2.</p>`
+    },
+    {
+      id:"F3",pool:"F",minutes:9,marks:17,
+      prompt:`<p>Solve:</p>
+      <div class="eq">\\[
+      y'''-3y''+3y'-y=e^x(x^2+1),
+      \\qquad y(0)=y'(0)=y''(0)=0.
+      \\]</div>`,
+      solution:`<p>The left side is <span class="math">(D-1)^3y</span>. Put <span class="math">y=e^xv</span>. Then</p>
+      <div class="eq">\\[
+      (D-1)^3(e^xv)=e^xv''',
+      \\]</div>
+      <p>so <span class="math">v'''=x^2+1</span>. Three integrations give</p>
+      <div class="eq">\\[
+      v=\\frac{x^5}{60}+\\frac{x^3}{6}+\\frac{A}{2}x^2+Bx+C.
+      \\]</div>
+      <p>The three zero initial conditions force <span class="math">A=B=C=0</span>. Therefore</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y=e^x\\left(\\frac{x^5}{60}+\\frac{x^3}{6}\\right)}.
+      \\]</div></div>
+      <p><b>Marking guide (17):</b> operator structure 4; substitution 4; three integrations 5; initial conditions 2; check 2.</p>`
+    },
+    {
+      id:"F4",pool:"F",minutes:9,marks:17,
+      prompt:`<p>Solve:</p>
+      <div class="eq">\\[
+      y'=y^2+(1-2x)y+x^2-x+1,\\qquad y(0)=1.
+      \\]</div>`,
+      solution:`<p>Inspection gives the particular solution <span class="math">S=x</span>. Set</p>
+      <div class="eq">\\[
+      y=x+\\frac1z.
+      \\]</div>
+      <p>Substitution reduces the Riccati equation to</p>
+      <div class="eq">\\[
+      z'+z=-1.
+      \\]</div>
+      <p>Thus <span class="math">z=Ce^{-x}-1</span>, so</p>
+      <div class="eq">\\[
+      y=x+\\frac1{Ce^{-x}-1}.
+      \\]</div>
+      <p>The initial condition gives <span class="math">C=2</span>. Therefore</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y=x+\\frac1{2e^{-x}-1}},\\qquad
+      \\boxed{-\\infty<x<\\ln2}.
+      \\]</div></div>
+      <p><b>Marking guide (17):</b> particular solution 3; Riccati substitution 4; transformed linear equation 4; constant 3; interval/check 3.</p>`
+    },
+    {
+      id:"F5",pool:"F",minutes:8,marks:17,
+      prompt:`<p>Solve completely:</p>
+      <div class="eq">\\[
+      y=xy'+e^{y'}.
+      \\]</div>`,
+      solution:`<p>This is Clairaut with <span class="math">p=y'</span> and <span class="math">f(p)=e^p</span>. The general line family is</p>
+      <div class="eq">\\[
+      \\boxed{y=Cx+e^C}.
+      \\]</div>
+      <p>The singular envelope satisfies <span class="math">x=-f'(p)=-e^p</span>, so it exists for <span class="math">x<0</span> and <span class="math">p=\\ln(-x)</span>. Substituting back,</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y=x\\ln(-x)-x},\\qquad x<0.
+      \\]</div></div>
+      <p><b>Marking guide (17):</b> line family 6; envelope condition 4; eliminate parameter 4; check/domain 3.</p>`
     }
+
   ];
 
   const pools=["A","B","C","D","E","F"];
@@ -378,7 +745,7 @@
       _midtermIntro:true,
       html:`<p><span class="supplementalTag">Midterm 1 simulator · Parts 1–2 · 50 minutes · 100 marks</span></p>
       <p><b>This is not a six-question method checklist.</b> Every paper is generated from hidden skill pools and then shuffled. Question titles do not tell you what technique to use, and the order is random.</p>
-      <div class="whybox"><p><b>Paper design:</b> 6 substantial questions, 100 marks total, approximately 49–53 minutes of intended work. The bank deliberately mixes unfamiliar first-order structure, higher-order equations, boundary/initial data, and engineering applications.</p>
+      <div class="whybox"><p><b>Paper design:</b> 6 substantial questions, 100 marks total, approximately 49–53 minutes of intended work. The bank deliberately mixes unfamiliar first-order structure, higher-order equations, boundary/initial data, and difficult pure-math solve problems.</p>
       <p>The problems are original transfer problems built to match the scope and level of the course and to resemble the multi-step difficulty of harder O'Neil Chapter 1–2 work. They are not copied textbook questions.</p></div>
       <div class="warn"><b>Exam conditions:</b> closed book, no glossary, no worked solutions, no method hints. Laplace is outside this Midterm 1 simulation. The timer does not pause.</div>
       ${status}

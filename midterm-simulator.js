@@ -217,59 +217,117 @@
 
     {
       id:"C1",pool:"C",minutes:10,marks:17,
-      prompt:`<p>Solve the initial-value problem:</p>
+      prompt:`<p>Solve:</p>
       <div class="eq">\\[
       y^{(4)}-4y^{(3)}+8y''-8y'+4y=0,
       \\]</div>
       <div class="eq">\\[
-      y(0)=1,\\qquad y'(0)=2,\\qquad y''(0)=4,\\qquad y^{(3)}(0)=4.
+      y(0)=1,\\quad y'(0)=2,\\quad y''(0)=4,\\quad y^{(3)}(0)=4.
       \\]</div>`,
-      solution:`<p>The characteristic polynomial factors as</p>
+      solution:`<p>The characteristic polynomial is</p>
       <div class="eq">\\[
-      r^4-4r^3+8r^2-8r+4=(r^2-2r+2)^2=((r-1)^2+1)^2.
+      r^4-4r^3+8r^2-8r+4=((r-1)^2+1)^2.
       \\]</div>
-      <p>Thus <span class="math">1\\pm i</span> are both double roots and</p>
+      <p>Thus <span class="math">1\\pm i</span> are double roots:</p>
       <div class="eq">\\[
       y=e^x[(A+Bx)\\cos x+(C+Dx)\\sin x].
       \\]</div>
-      <p>At zero, successive derivatives give</p>
+      <p>At zero,</p>
       <div class="eq">\\[
-      y(0)=A,\quad y'(0)=A+B+C,\quad
-      y''(0)=2B+2C+2D,\quad y^{(3)}(0)=-2A+2C+6D.
+      y=A,\\quad y'=A+B+C,\\quad y''=2B+2C+2D,\\quad y^{(3)}=-2A+2C+6D.
       \\]</div>
-      <p>The data give <span class="math">A=1</span>, <span class="math">B+C=1</span>, <span class="math">B+C+D=2</span>, and <span class="math">-2+2C+6D=4</span>. Hence <span class="math">D=1</span>, <span class="math">C=0</span>, <span class="math">B=1</span>.</p>
+      <p>The data give <span class="math">A=1,B=1,C=0,D=1</span>. Hence</p>
       <div class="whybox"><div class="eq">\\[
       \\boxed{y=e^x[(1+x)\\cos x+x\\sin x]}.
       \\]</div></div>
-      <p><b>Marking guide (17):</b> polynomial/factorization 4; repeated-complex basis 5; four initial conditions 6; final answer/check 2.</p>`
+      <p><b>Marking guide (17):</b> factorization 4; repeated-complex basis 5; constants 6; check 2.</p>`
     },
     {
       id:"C2",pool:"C",minutes:8,marks:17,
-      prompt:`<p>On the real line, one nonzero solution of the equation below is <span class="math">y_1=x^2+1</span>. Find a second linearly independent solution and hence the general solution.</p>
+      prompt:`<p>Solve on <span class="math">\\mathbb R</span>:</p>
       <div class="eq">\\[
-      y''-\\frac{2}{x^2+1}y=0.
+      (1+x^2)y''-2xy'+2y=0.
+      \\]</div>`,
+      solution:`<p>Inspection gives one solution <span class="math">y_1=x</span>. In standard form,</p>
+      <div class="eq">\\[
+      y''-\\frac{2x}{1+x^2}y'+\\frac{2}{1+x^2}y=0,
       \\]</div>
-      <p>Your work must make clear why the second solution is independent of <span class="math">y_1</span>.</p>`,
-      solution:`<p>The equation is in standard form with <span class="math">P(x)=0</span>. Reduction of order gives</p>
+      <p>so <span class="math">P=-2x/(1+x^2)</span>. Reduction of order gives</p>
       <div class="eq">\\[
       y_2=y_1\\int\\frac{e^{-\\int Pdx}}{y_1^2}\\,dx
-      =(x^2+1)\\int\\frac{dx}{(x^2+1)^2}.
+      =x\\int\\frac{1+x^2}{x^2}\\,dx
+      =x\\left(-\\frac1x+x\\right)=x^2-1.
       \\]</div>
-      <p>Using</p>
-      <div class="eq">\\[
-      \\int\\frac{dx}{(x^2+1)^2}
-      =\\frac{x}{2(x^2+1)}+\\frac12\\arctan x,
-      \\]</div>
-      <p>and rescaling by 2, take</p>
-      <div class="eq">\\[
-      y_2=x+(x^2+1)\\arctan x.
-      \\]</div>
-      <p>For the unscaled reduction-of-order choice, <span class="math">W=y_1^2u'=1</span>; after multiplying <span class="math">y_2</span> by 2, the Wronskian is the nonzero constant 2. Therefore the pair is independent.</p>
+      <p>The Wronskian is <span class="math">W=x^2+1\\ne0</span>, so the two solutions are independent. Thus</p>
       <div class="whybox"><div class="eq">\\[
-      \\boxed{y=C_1(x^2+1)+C_2[x+(x^2+1)\\arctan x]}.
+      \\boxed{y=C_1x+C_2(x^2-1)}.
       \\]</div></div>
-      <p><b>Marking guide (17):</b> reduction setup 5; integral 5; second solution 3; independence 2; general family 2.</p>`
+      <p><b>Marking guide (17):</b> find first solution 3; standard form 3; reduction formula 5; second solution 3; general family/check 3.</p>`
     },
+    {
+      id:"C3",pool:"C",minutes:8,marks:17,
+      prompt:`<p>Solve:</p>
+      <div class="eq">\\[
+      y'''-y''-4y'+4y=0,\\qquad
+      y(0)=1,\\quad y'(0)=9,\\quad y''(0)=1.
+      \\]</div>`,
+      solution:`<p>The characteristic polynomial factors as</p>
+      <div class="eq">\\[
+      r^3-r^2-4r+4=(r-1)(r-2)(r+2).
+      \\]</div>
+      <p>Hence</p>
+      <div class="eq">\\[
+      y=Ae^x+Be^{2x}+Ce^{-2x}.
+      \\]</div>
+      <p>The initial data give</p>
+      <div class="eq">\\[
+      A+B+C=1,\\qquad A+2B-2C=9,\\qquad A+4B+4C=1.
+      \\]</div>
+      <p>Solving yields <span class="math">A=1,B=2,C=-2</span>. Therefore</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y=e^x+2e^{2x}-2e^{-2x}}.
+      \\]</div></div>
+      <p><b>Marking guide (17):</b> characteristic polynomial 4; homogeneous basis 4; solve constants 7; check 2.</p>`
+    },
+    {
+      id:"C4",pool:"C",minutes:6,marks:16,
+      prompt:`<p>Solve:</p>
+      <div class="eq">\\[
+      y''+6y'+9y=0,\\qquad y(0)=2,\\qquad y'(0)=-1.
+      \\]</div>`,
+      solution:`<p>The characteristic equation is <span class="math">(r+3)^2=0</span>, so</p>
+      <div class="eq">\\[
+      y=(C_1+C_2x)e^{-3x}.
+      \\]</div>
+      <p>From <span class="math">y(0)=2</span>, <span class="math">C_1=2</span>. Also</p>
+      <div class="eq">\\[
+      y'(0)=C_2-3C_1=-1,
+      \\]</div>
+      <p>so <span class="math">C_2=5</span>. Therefore</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y=(2+5x)e^{-3x}}.
+      \\]</div></div>
+      <p><b>Marking guide (16):</b> repeated root 4; correct basis 4; constants 5; check 3.</p>`
+    },
+    {
+      id:"C5",pool:"C",minutes:7,marks:16,
+      prompt:`<p>Solve for <span class="math">x>0</span>:</p>
+      <div class="eq">\\[
+      x^2y''-2xy'+2y=0.
+      \\]</div>`,
+      solution:`<p>Try <span class="math">y=x^m</span>. Then</p>
+      <div class="eq">\\[
+      m(m-1)-2m+2=0
+      \\quad\\Longrightarrow\\quad
+      (m-1)(m-2)=0.
+      \\]</div>
+      <p>Thus the two independent solutions are <span class="math">x</span> and <span class="math">x^2</span>, giving</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y=C_1x+C_2x^2},\\qquad x>0.
+      \\]</div></div>
+      <p><b>Marking guide (16):</b> Euler trial 4; indicial equation 4; roots 3; general solution/check 5.</p>`
+    },
+
     {
       id:"D1",pool:"D",minutes:8,marks:17,
       prompt:`<p>Solve the initial-value problem:</p>

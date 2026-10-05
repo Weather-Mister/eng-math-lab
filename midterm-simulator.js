@@ -106,47 +106,115 @@
 
     {
       id:"B1",pool:"B",minutes:8,marks:16,
-      prompt:`<p>Solve the initial-value problem and give the maximal real interval containing <span class="math">x=1</span> on which the resulting real branch exists:</p>
-      <div class="eq">\\[(3y^2+2x)\\,dx+2xy\\,dy=0,\\qquad y(1)=1.\\]</div>`,
-      solution:`<p>Let <span class="math">M=3y^2+2x</span> and <span class="math">N=2xy</span>. Since</p>
-      <div class="eq">\\[M_y=6y,\\qquad N_x=2y,\\]</div>
-      <p>the equation is not exact. But</p>
-      <div class="eq">\\[\\frac{M_y-N_x}{N}=\\frac{4y}{2xy}=\\frac2x,\\]</div>
-      <p>so an integrating factor is <span class="math">\\mu=x^2</span>. Multiplying gives</p>
-      <div class="eq">\\[(3x^2y^2+2x^3)dx+2x^3y\,dy=0,\\]</div>
-      <p>which is exact, with potential</p>
+      prompt:`<p>Solve:</p>
+      <div class="eq">\\[
+      (3y^2+2x)\\,dx+2xy\\,dy=0,\\qquad y(1)=1.
+      \\]</div>`,
+      solution:`<p>Let <span class="math">M=3y^2+2x</span>, <span class="math">N=2xy</span>. Then <span class="math">M_y=6y</span>, <span class="math">N_x=2y</span>, so the equation is not exact. But</p>
+      <div class="eq">\\[
+      \\frac{M_y-N_x}{N}=\\frac2x,
+      \\]</div>
+      <p>hence an integrating factor is <span class="math">\\mu=x^2</span>. The multiplied equation is exact with potential</p>
       <div class="eq">\\[\\phi=x^3y^2+\\frac{x^4}{2}.\\]</div>
-      <p>Using <span class="math">y(1)=1</span> gives <span class="math">C=3/2</span>, so the positive IVP branch is</p>
+      <p>The initial condition gives <span class="math">C=3/2</span>. The positive branch through <span class="math">(1,1)</span> is</p>
       <div class="whybox"><div class="eq">\\[
-      \\boxed{y(x)=\\sqrt{\\frac{3-x^4}{2x^3}}}.
+      \\boxed{y=\\sqrt{\\frac{3-x^4}{2x^3}}},\\qquad
+      \\boxed{0<x<3^{1/4}}.
       \\]</div></div>
-      <p>For the branch through <span class="math">(1,1)</span>, we require <span class="math">x>0</span> and <span class="math">3-x^4>0</span>. Thus</p>
-      <div class="eq">\\[\\boxed{0<x<3^{1/4}}.\\]</div>
-      <p><b>Marking guide (16):</b> exactness test 2; integrating-factor test/factor 4; exact potential 4; IVP branch 3; interval 3.</p>`
+      <p><b>Marking guide (16):</b> exactness test 2; integrating factor 4; potential 4; IVP branch 3; interval 3.</p>`
     },
     {
-      id:"B2",pool:"B",minutes:7,marks:16,
-      prompt:`<p>Find the implicit solution through <span class="math">(0,\\pi)</span>, and compute the slope of that solution curve at the initial point:</p>
+      id:"B2",pool:"B",minutes:8,marks:16,
+      prompt:`<p>Solve:</p>
       <div class="eq">\\[
-      (e^x\\cos y+2xy)\\,dx+(-e^x\\sin y+x^2+3y^2)\\,dy=0.
+      (e^x\\cos y+2xy)\\,dx+(-e^x\\sin y+x^2+3y^2)\\,dy=0,
+      \\qquad y(0)=\\pi.
       \\]</div>`,
-      solution:`<p>Set</p>
-      <div class="eq">\\[M=e^x\\cos y+2xy,\\qquad N=-e^x\\sin y+x^2+3y^2.\\]</div>
-      <p>Then</p><div class="eq">\\[M_y=-e^x\\sin y+2x=N_x,\\]</div>
-      <p>so the equation is exact. Integrating <span class="math">M</span> with respect to <span class="math">x</span> gives</p>
-      <div class="eq">\\[\\phi=e^x\\cos y+x^2y+g(y).\\]</div>
-      <p>Matching <span class="math">\\phi_y=N</span> gives <span class="math">g'(y)=3y^2</span>, hence <span class="math">g=y^3</span>. At <span class="math">(0,\\pi)</span>, <span class="math">C=\\pi^3-1</span>:</p>
+      solution:`<p>With</p>
+      <div class="eq">\\[
+      M=e^x\\cos y+2xy,\\qquad N=-e^x\\sin y+x^2+3y^2,
+      \\]</div>
+      <p>we have <span class="math">M_y=-e^x\\sin y+2x=N_x</span>, so the equation is exact.</p>
+      <p>Integrating <span class="math">M</span> with respect to <span class="math">x</span>,</p>
+      <div class="eq">\\[
+      \\phi=e^x\\cos y+x^2y+g(y).
+      \\]</div>
+      <p>Matching <span class="math">\\phi_y=N</span> gives <span class="math">g'(y)=3y^2</span>, so <span class="math">g=y^3</span>. At <span class="math">(0,\\pi)</span>, <span class="math">C=\\pi^3-1</span>. Thus</p>
       <div class="whybox"><div class="eq">\\[
       \\boxed{e^x\\cos y+x^2y+y^3=\\pi^3-1}.
       \\]</div></div>
-      <p>From <span class="math">M+Ny'=0</span>,</p>
-      <div class="eq">\\[
-      y'(0)=-\\frac{M(0,\\pi)}{N(0,\\pi)}
-      =-\\frac{-1}{3\\pi^2}
-      =\\boxed{\\frac1{3\\pi^2}}.
-      \\]</div>
-      <p><b>Marking guide (16):</b> exactness 3; potential 5; initial condition 3; implicit answer 2; slope 3.</p>`
+      <p><b>Marking guide (16):</b> exactness 3; reconstruct potential 6; initial condition 3; final implicit family 2; check 2.</p>`
     },
+    {
+      id:"B3",pool:"B",minutes:7,marks:16,
+      prompt:`<p>Solve for <span class="math">x>0</span>:</p>
+      <div class="eq">\\[
+      y'+\\left(\\frac1x-2\\right)y=xe^{2x},\\qquad y(1)=e^2.
+      \\]</div>`,
+      solution:`<p>The integrating factor is</p>
+      <div class="eq">\\[
+      I=e^{\\int(1/x-2)\\,dx}=xe^{-2x}.
+      \\]</div>
+      <p>Therefore</p>
+      <div class="eq">\\[
+      (xe^{-2x}y)'=x^2,
+      \\]</div>
+      <p>so <span class="math">xe^{-2x}y=x^3/3+C</span>. Hence</p>
+      <div class="eq">\\[
+      y=e^{2x}\\left(\\frac{x^2}{3}+\\frac{C}{x}\\right).
+      \\]</div>
+      <p>The initial condition gives <span class="math">C=2/3</span>:</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y=e^{2x}\\left(\\frac{x^2}{3}+\\frac{2}{3x}\\right)},\\qquad x>0.
+      \\]</div></div>
+      <p><b>Marking guide (16):</b> standard form/IF 4; product derivative 4; integration 3; IVP constant 3; check 2.</p>`
+    },
+    {
+      id:"B4",pool:"B",minutes:7,marks:16,
+      prompt:`<p>Solve:</p>
+      <div class="eq">\\[
+      (2xy+\\cos x)\\,dx+(x^2+3y^2)\\,dy=0,\\qquad y(0)=1.
+      \\]</div>`,
+      solution:`<p>Here</p>
+      <div class="eq">\\[
+      M_y=2x=N_x,
+      \\]</div>
+      <p>so the equation is exact. Integrating <span class="math">M</span> with respect to <span class="math">x</span>,</p>
+      <div class="eq">\\[
+      \\phi=x^2y+\\sin x+g(y).
+      \\]</div>
+      <p>Matching <span class="math">\\phi_y=x^2+g'(y)=x^2+3y^2</span> gives <span class="math">g=y^3</span>. The initial condition gives <span class="math">C=1</span>. Therefore</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{x^2y+\\sin x+y^3=1}.
+      \\]</div></div>
+      <p><b>Marking guide (16):</b> exactness 3; potential 6; initial condition 3; final answer/check 4.</p>`
+    },
+    {
+      id:"B5",pool:"B",minutes:8,marks:16,
+      prompt:`<p>Solve on the branch with <span class="math">y>0</span>:</p>
+      <div class="eq">\\[
+      \\left(y+\\frac{2x}{y}\\right)dx+2x\\,dy=0,\\qquad y(1)=1.
+      \\]</div>`,
+      solution:`<p>Take <span class="math">M=y+2x/y</span> and <span class="math">N=2x</span>. Then</p>
+      <div class="eq">\\[
+      \\frac{M_y-N_x}{M}=-\\frac1y,
+      \\]</div>
+      <p>so an integrating factor depending only on <span class="math">y</span> is</p>
+      <div class="eq">\\[
+      \\mu(y)=e^{-\\int(-1/y)\\,dy}=y.
+      \\]</div>
+      <p>After multiplying,</p>
+      <div class="eq">\\[
+      (y^2+2x)\\,dx+2xy\\,dy=0
+      \\]</div>
+      <p>is exact with potential <span class="math">\\phi=xy^2+x^2</span>. The initial condition gives <span class="math">C=2</span>, so</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y=\\sqrt{\\frac{2-x^2}{x}}},\\qquad
+      \\boxed{0<x<\\sqrt2}.
+      \\]</div></div>
+      <p><b>Marking guide (16):</b> integrating-factor test 4; factor 3; potential 4; IVP branch 3; interval 2.</p>`
+    },
+
     {
       id:"C1",pool:"C",minutes:10,marks:17,
       prompt:`<p>Solve the initial-value problem:</p>

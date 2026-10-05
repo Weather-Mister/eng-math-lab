@@ -330,55 +330,112 @@
 
     {
       id:"D1",pool:"D",minutes:8,marks:17,
-      prompt:`<p>Solve the initial-value problem:</p>
+      prompt:`<p>Solve:</p>
       <div class="eq">\\[
       y''-2y'+y=e^x(x^2+1),\\qquad y(0)=0,\\qquad y'(0)=1.
+      \\]</div>`,
+      solution:`<p>The homogeneous equation has <span class="math">(r-1)^2=0</span>, so <span class="math">y_h=e^x(C_1+C_2x)</span>.</p>
+      <p>Write <span class="math">y=e^xv</span>. Since the operator is <span class="math">(D-1)^2</span>,</p>
+      <div class="eq">\\[
+      (D-1)^2(e^xv)=e^xv'',
       \\]</div>
-      <p>Show enough work to justify the form of every term in your answer.</p>`,
-      solution:`<p>The homogeneous polynomial is <span class="math">(r-1)^2</span>, so <span class="math">y_h=e^x(C_1+C_2x)</span>.</p>
-      <p>Write <span class="math">y=e^xv</span>. Because the operator is <span class="math">(D-1)^2</span>,</p>
-      <div class="eq">\\[(D-1)^2(e^xv)=e^xv''.\\]</div>
-      <p>Thus</p><div class="eq">\\[v''=x^2+1.\\]</div>
-      <p>Integrating twice,</p>
+      <p>hence <span class="math">v''=x^2+1</span>. Integrating twice,</p>
       <div class="eq">\\[
       v=\\frac{x^4}{12}+\\frac{x^2}{2}+C_2x+C_1.
       \\]</div>
-      <p>The data give <span class="math">C_1=0</span> and <span class="math">C_2=1</span>. Hence</p>
+      <p>The initial data give <span class="math">C_1=0,C_2=1</span>. Therefore</p>
       <div class="whybox"><div class="eq">\\[
       \\boxed{y=e^x\\left(x+\\frac{x^2}{2}+\\frac{x^4}{12}\\right)}.
       \\]</div></div>
-      <p><b>Marking guide (17):</b> homogeneous part 3; recognize/handle overlap 4; particular calculation 5; IVP constants 3; verification 2.</p>`
+      <p><b>Marking guide (17):</b> homogeneous part 3; resonance/operator reduction 4; particular solution 5; IVP constants 3; check 2.</p>`
     },
     {
       id:"D2",pool:"D",minutes:10,marks:17,
-      prompt:`<p>On <span class="math">(-\\pi/2,\\pi/2)</span>, solve</p>
+      prompt:`<p>Solve on <span class="math">(-\\pi/2,\\pi/2)</span>:</p>
       <div class="eq">\\[
       y''+y=\\tan x,\\qquad y(0)=1,\\qquad y'(0)=0.
-      \\]</div>
-      <p>Give a real-valued answer valid on the stated interval.</p>`,
+      \\]</div>`,
       solution:`<p>A homogeneous basis is <span class="math">y_1=\\cos x</span>, <span class="math">y_2=\\sin x</span>, with <span class="math">W=1</span>. Variation of parameters gives</p>
       <div class="eq">\\[
       u_1'=-\\sin x\\tan x=\\cos x-\\sec x,\\qquad
       u_2'=\\cos x\\tan x=\\sin x.
       \\]</div>
-      <p>So we may take</p>
+      <p>Take</p>
       <div class="eq">\\[
       u_1=\\sin x-\\ln(\\sec x+\\tan x),\\qquad u_2=-\\cos x.
       \\]</div>
-      <p>The cross terms cancel, leaving</p>
-      <div class="eq">\\[
-      y_p=-\\cos x\\ln(\\sec x+\\tan x).
-      \\]</div>
-      <p>Thus</p>
+      <p>The cross terms cancel, leaving <span class="math">y_p=-\\cos x\\ln(\\sec x+\\tan x)</span>. Therefore</p>
       <div class="eq">\\[
       y=C_1\\cos x+C_2\\sin x-\\cos x\\ln(\\sec x+\\tan x).
       \\]</div>
-      <p>At <span class="math">x=0</span>, the logarithm is zero, so <span class="math">C_1=1</span>. The particular term has derivative -1 at zero, so <span class="math">C_2=1</span>.</p>
+      <p>The initial data give <span class="math">C_1=1,C_2=1</span>. Thus</p>
       <div class="whybox"><div class="eq">\\[
       \\boxed{y=\\cos x+\\sin x-\\cos x\\ln(\\sec x+\\tan x)}.
       \\]</div></div>
-      <p><b>Marking guide (17):</b> homogeneous basis/Wronskian 3; parameter equations 5; integrations/cancellation 5; IVP constants 3; interval 1.</p>`
+      <p><b>Marking guide (17):</b> basis/Wronskian 3; parameter equations 5; integrations 5; IVP constants 3; interval 1.</p>`
     },
+    {
+      id:"D3",pool:"D",minutes:8,marks:17,
+      prompt:`<p>Solve:</p>
+      <div class="eq">\\[
+      y''-3y'+2y=4x+e^{2x},\\qquad y(0)=0,\\qquad y'(0)=1.
+      \\]</div>`,
+      solution:`<p>The homogeneous roots are <span class="math">1,2</span>, so</p>
+      <div class="eq">\\[
+      y_h=C_1e^x+C_2e^{2x}.
+      \\]</div>
+      <p>For <span class="math">4x</span>, try <span class="math">Ax+B</span>; this gives <span class="math">A=2,B=3</span>. Because <span class="math">e^{2x}</span> resonates with a homogeneous term, try <span class="math">Cxe^{2x}</span>; substitution gives <span class="math">C=1</span>.</p>
+      <p>Thus</p>
+      <div class="eq">\\[
+      y=C_1e^x+C_2e^{2x}+2x+3+xe^{2x}.
+      \\]</div>
+      <p>The data give <span class="math">C_1=-4,C_2=1</span>. Therefore</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y=-4e^x+e^{2x}+2x+3+xe^{2x}}.
+      \\]</div></div>
+      <p><b>Marking guide (17):</b> homogeneous part 3; polynomial particular 4; resonant exponential particular 4; constants 4; check 2.</p>`
+    },
+    {
+      id:"D4",pool:"D",minutes:7,marks:16,
+      prompt:`<p>Solve:</p>
+      <div class="eq">\\[
+      y''+4y=8\\sin(2x),\\qquad y(0)=0,\\qquad y'(0)=0.
+      \\]</div>`,
+      solution:`<p>The homogeneous solution is <span class="math">C_1\\cos2x+C_2\\sin2x</span>. Since the forcing is resonant, try <span class="math">y_p=Ax\\cos2x</span>. Because</p>
+      <div class="eq">\\[
+      (x\\cos2x)''+4x\\cos2x=-4\\sin2x,
+      \\]</div>
+      <p>we need <span class="math">A=-2</span>. Thus</p>
+      <div class="eq">\\[
+      y=C_1\\cos2x+C_2\\sin2x-2x\\cos2x.
+      \\]</div>
+      <p>The initial conditions give <span class="math">C_1=0,C_2=1</span>, so</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y=\\sin2x-2x\\cos2x}.
+      \\]</div></div>
+      <p><b>Marking guide (16):</b> homogeneous part 3; resonance adjustment 5; particular coefficient 3; constants 3; check 2.</p>`
+    },
+    {
+      id:"D5",pool:"D",minutes:9,marks:17,
+      prompt:`<p>Solve on <span class="math">(-\\pi/2,\\pi/2)</span>:</p>
+      <div class="eq">\\[
+      y''+y=\\sec x.
+      \\]</div>`,
+      solution:`<p>Use <span class="math">y_1=\\cos x</span>, <span class="math">y_2=\\sin x</span>, <span class="math">W=1</span>. Variation of parameters gives</p>
+      <div class="eq">\\[
+      y_p=-\\cos x\\int \\tan x\\,dx+\\sin x\\int1\\,dx.
+      \\]</div>
+      <p>Since <span class="math">\\int\\tan x\\,dx=-\\ln(\\cos x)</span> on the stated interval,</p>
+      <div class="eq">\\[
+      y_p=\\cos x\\ln(\\cos x)+x\\sin x.
+      \\]</div>
+      <p>Therefore</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y=C_1\\cos x+C_2\\sin x+\\cos x\\ln(\\cos x)+x\\sin x}.
+      \\]</div></div>
+      <p><b>Marking guide (17):</b> basis/Wronskian 3; variation formulas 5; integrals 5; general solution 2; check/domain 2.</p>`
+    },
+
     {
       id:"E1",pool:"E",minutes:9,marks:16,
       prompt:`<p>For <span class="math">x>0</span>, solve the initial-value problem</p>

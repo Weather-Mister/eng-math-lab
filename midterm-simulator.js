@@ -6,8 +6,8 @@
 (()=>{
   if(typeof units==="undefined" || typeof state==="undefined") return;
 
-  const VERSION=4;
-  const KEY="engMathMidterm1RandomV4";
+  const VERSION=5;
+  const KEY="engMathMidterm1RandomV5";
   const LIMIT=50*60;
   const UNIT_ID="l9-mock";
   let tickHandle=null;
@@ -15,45 +15,95 @@
   const bank=[
     {
       id:"A1",pool:"A",minutes:8,marks:17,
-      prompt:`<p>Solve the initial-value problem completely. Include the maximal interval containing the initial point on which the IVP solution is defined.</p>
+      prompt:`<p>Solve completely:</p>
       <div class="eq">\\[
       y'=y^2-2(x+1)y+x^2+2x+2,\\qquad y(0)=2.
-      \\]</div>
-      <p>Do not assume in advance which first-order technique is intended.</p>`,
-      solution:`<p>Inspection gives a particular solution <span class="math">S=x+1</span>, since the right side becomes 1 when <span class="math">y=x+1</span>.</p>
-      <p>Put</p><div class="eq">\\[y=x+1+\\frac1z.\\]</div>
-      <p>Then <span class="math">y'=1-z'/z^2</span>. Substitution cancels the terms involving <span class="math">x</span> and gives</p>
-      <div class="eq">\\[1-\\frac{z'}{z^2}=1+\\frac1{z^2},\\]</div>
-      <p>hence <span class="math">z'=-1</span>, so <span class="math">z=C-x</span>. Therefore</p>
+      \\]</div>`,
+      solution:`<p>Try the simple particular solution <span class="math">S=x+1</span>. It works because the right side becomes 1, which equals <span class="math">S'</span>.</p>
+      <p>Set <span class="math">y=x+1+1/z</span>. Then <span class="math">y'=1-z'/z^2</span>, and substitution gives <span class="math">z'=-1</span>. Hence <span class="math">z=C-x</span> and</p>
       <div class="eq">\\[y=x+1+\\frac1{C-x}.\\]</div>
-      <p>The initial condition gives <span class="math">C=1</span>:</p>
-      <div class="whybox"><div class="eq">\\[\\boxed{y=x+1+\\frac1{1-x}}.\\]</div></div>
-      <p>The singularity is at <span class="math">x=1</span>, so the maximal interval containing 0 is <span class="math">\\boxed{(-\\infty,1)}</span>.</p>
-      <p><b>Marking guide (17):</b> useful reduction 3; transformed equation 4; solve it 4; initial condition 3; interval/check 3.</p>`
+      <p>The initial condition gives <span class="math">C=1</span>, so</p>
+      <div class="whybox"><div class="eq">\\[\\boxed{y=x+1+\\frac1{1-x}},\\qquad \\boxed{-\\infty<x<1}.\\]</div></div>
+      <p><b>Marking guide (17):</b> particular solution 3; Riccati substitution 4; transformed equation 4; initial condition 3; interval/check 3.</p>`
     },
     {
       id:"A2",pool:"A",minutes:9,marks:17,
-      prompt:`<p>Find the complete real solution family, on intervals where <span class="math">x\\ne0</span>, of</p>
-      <div class="eq">\\[(2x^2+xy+y^2)\\,dx-x(x+2y)\\,dy=0.\\]</div>
-      <p>If algebra excludes any straight-line solutions, recover and report them separately.</p>`,
-      solution:`<p>Put <span class="math">y=ux</span>, so <span class="math">y'=u+xu'</span>. Then</p>
-      <div class="eq">\\[u+xu'=\\frac{2+u+u^2}{1+2u},\\]</div>
-      <p>so</p><div class="eq">\\[x\\frac{du}{dx}=\\frac{2-u^2}{1+2u}.\\]</div>
+      prompt:`<p>Solve completely on intervals where <span class="math">x\\ne0</span>:</p>
+      <div class="eq">\\[(2x^2+xy+y^2)\\,dx-x(x+2y)\\,dy=0.\\]</div>`,
+      solution:`<p>With <span class="math">y=ux</span>, <span class="math">y'=u+xu'</span> and</p>
+      <div class="eq">\\[u+xu'=\\frac{2+u+u^2}{1+2u},\\qquad
+      x\\frac{du}{dx}=\\frac{2-u^2}{1+2u}.\\]</div>
       <p>For <span class="math">u^2\\ne2</span>,</p>
       <div class="eq">\\[\\frac{1+2u}{2-u^2}\\,du=\\frac{dx}{x}.\\]</div>
-      <p>One antiderivative is</p>
+      <p>An antiderivative is</p>
       <div class="eq">\\[\\frac1{2\\sqrt2}\\ln\\left|\\frac{\\sqrt2+u}{\\sqrt2-u}\\right|-\\ln|2-u^2|.\\]</div>
-      <p>Hence, with <span class="math">u=y/x</span>,</p>
+      <p>Thus, with <span class="math">u=y/x</span>,</p>
       <div class="whybox"><div class="eq">\\[
-      \\boxed{
-      \\frac1{2\\sqrt2}\\ln\\left|\\frac{\\sqrt2+y/x}{\\sqrt2-y/x}\\right|
-      -\\ln\\left|2-(y/x)^2\\right|=\\ln|x|+C
-      }.
+      \\boxed{\\frac1{2\\sqrt2}\\ln\\left|\\frac{\\sqrt2+y/x}{\\sqrt2-y/x}\\right|
+      -\\ln\\left|2-(y/x)^2\\right|=\\ln|x|+C}.
       \\]</div></div>
-      <p>The division by <span class="math">2-u^2</span> excluded the constant-ratio branches <span class="math">u=\\pm\\sqrt2</span>. Both satisfy the original equation, so also include</p>
-      <div class="eq">\\[\\boxed{y=\\sqrt2\,x},\\qquad \\boxed{y=-\\sqrt2\,x}.\\]</div>
-      <p><b>Marking guide (17):</b> reduction 4; separation 4; integration 5; restore variables 2; excluded branches 2.</p>`
+      <p>The divided-out values <span class="math">u=\\pm\\sqrt2</span> give two additional solutions:</p>
+      <div class="eq">\\[\\boxed{y=\\sqrt2\\,x},\\qquad \\boxed{y=-\\sqrt2\\,x}.\\]</div>
+      <p><b>Marking guide (17):</b> homogeneous substitution 4; separation 4; integration 5; restore variables 2; exceptional branches 2.</p>`
     },
+    {
+      id:"A3",pool:"A",minutes:8,marks:17,
+      prompt:`<p>Solve for <span class="math">x>0</span>:</p>
+      <div class="eq">\\[
+      y'+\\frac2x\\,y=x^3y^2,\\qquad y(1)=1.
+      \\]</div>`,
+      solution:`<p>This is Bernoulli with power 2. For the IVP branch <span class="math">y\\ne0</span>, set <span class="math">v=y^{-1}</span>. Then</p>
+      <div class="eq">\\[v'-\\frac2xv=-x^3.\\]</div>
+      <p>The integrating factor is <span class="math">x^{-2}</span>, so</p>
+      <div class="eq">\\[\\left(x^{-2}v\\right)'=-x,\\qquad
+      x^{-2}v=-\\frac{x^2}{2}+C.\\]</div>
+      <p>Hence <span class="math">v=-x^4/2+Cx^2</span>. Since <span class="math">v(1)=1</span>, <span class="math">C=3/2</span>. Therefore</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y=\\frac{2}{x^2(3-x^2)}},\\qquad
+      \\boxed{0<x<\\sqrt3}.
+      \\]</div></div>
+      <p><b>Marking guide (17):</b> Bernoulli substitution 4; linear equation 4; integration 4; IVP constant 2; interval/check 3.</p>`
+    },
+    {
+      id:"A4",pool:"A",minutes:7,marks:16,
+      prompt:`<p>Solve:</p>
+      <div class="eq">\\[
+      y'=x(y-1)(y+2),\\qquad y(0)=0.
+      \\]</div>`,
+      solution:`<p>Separate:</p>
+      <div class="eq">\\[
+      \\frac{dy}{(y-1)(y+2)}=x\\,dx.
+      \\]</div>
+      <p>Using partial fractions,</p>
+      <div class="eq">\\[
+      \\frac13\\ln\\left|\\frac{y-1}{y+2}\\right|=\\frac{x^2}{2}+C.
+      \\]</div>
+      <p>Using the initial condition in the signed exponential form gives</p>
+      <div class="eq">\\[
+      \\frac{y-1}{y+2}=-\\frac12e^{3x^2/2}.
+      \\]</div>
+      <p>Solving for <span class="math">y</span>,</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y(x)=\\frac{2\\left(1-e^{3x^2/2}\\right)}{2+e^{3x^2/2}}}.
+      \\]</div></div>
+      <p><b>Marking guide (16):</b> separation 3; partial fractions 4; integration 3; initial condition 3; explicit solution/check 3.</p>`
+    },
+    {
+      id:"A5",pool:"A",minutes:7,marks:16,
+      prompt:`<p>Solve completely:</p>
+      <div class="eq">\\[
+      y=xy'+(y')^2-2y'.
+      \\]</div>`,
+      solution:`<p>This is a Clairaut equation <span class="math">y=xp+f(p)</span> with <span class="math">p=y'</span> and <span class="math">f(p)=p^2-2p</span>.</p>
+      <p>The one-parameter line family is</p>
+      <div class="eq">\\[\\boxed{y=Cx+C^2-2C}.\\]</div>
+      <p>For the singular envelope, <span class="math">x=-f'(p)=2-2p</span>, so <span class="math">p=1-x/2</span>. Substitution gives</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y=x-1-\\frac{x^2}{4}}.
+      \\]</div></div>
+      <p><b>Marking guide (16):</b> line family 6; envelope condition 4; eliminate parameter 4; verification 2.</p>`
+    },
+
     {
       id:"B1",pool:"B",minutes:8,marks:16,
       prompt:`<p>Solve the initial-value problem and give the maximal real interval containing <span class="math">x=1</span> on which the resulting real branch exists:</p>
@@ -378,7 +428,7 @@
       _midtermIntro:true,
       html:`<p><span class="supplementalTag">Midterm 1 simulator · Parts 1–2 · 50 minutes · 100 marks</span></p>
       <p><b>This is not a six-question method checklist.</b> Every paper is generated from hidden skill pools and then shuffled. Question titles do not tell you what technique to use, and the order is random.</p>
-      <div class="whybox"><p><b>Paper design:</b> 6 substantial questions, 100 marks total, approximately 49–53 minutes of intended work. The bank deliberately mixes unfamiliar first-order structure, higher-order equations, boundary/initial data, and engineering applications.</p>
+      <div class="whybox"><p><b>Paper design:</b> 6 substantial questions, 100 marks total, approximately 49–53 minutes of intended work. The bank deliberately mixes unfamiliar first-order structure, higher-order equations, boundary/initial data, and difficult pure-math solve problems.</p>
       <p>The problems are original transfer problems built to match the scope and level of the course and to resemble the multi-step difficulty of harder O'Neil Chapter 1–2 work. They are not copied textbook questions.</p></div>
       <div class="warn"><b>Exam conditions:</b> closed book, no glossary, no worked solutions, no method hints. Laplace is outside this Midterm 1 simulation. The timer does not pause.</div>
       ${status}

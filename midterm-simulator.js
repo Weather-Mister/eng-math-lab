@@ -547,47 +547,115 @@
 
     {
       id:"F1",pool:"F",minutes:9,marks:17,
-      prompt:`<p>A <span class="math">1\\,\\mathrm{kg}</span> mass is attached to a spring with stiffness <span class="math">9\\,\\mathrm{N/m}</span> and a viscous damper with coefficient <span class="math">2\\,\\mathrm{N\\,s/m}</span>. It is driven by <span class="math">10\\cos(3t)\\,\\mathrm N</span>. Displacement is measured from equilibrium. At <span class="math">t=0</span>, the mass is at equilibrium and at rest.</p>
-      <p>(a) Build the governing IVP. (b) Solve for the displacement. (c) Classify the free motion and decide whether the forced response exhibits unbounded resonance.</p>`,
-      solution:`<p>Newton's law gives</p>
+      prompt:`<p>Solve:</p>
       <div class="eq">\\[
-      \\boxed{y''+2y'+9y=10\\cos3t},\\qquad y(0)=0,\\qquad y'(0)=0.
+      y^{(5)}-2y^{(4)}+2y^{(3)}-2y''+y'=0,
       \\]</div>
-      <p>The homogeneous roots are <span class="math">-1\\pm2\\sqrt2\,i</span>, hence</p>
       <div class="eq">\\[
-      y_h=e^{-t}[C_1\\cos(2\\sqrt2\,t)+C_2\\sin(2\\sqrt2\,t)].
+      y(0)=4,\\quad y'(0)=0,\\quad y''(0)=-3,\\quad y^{(3)}(0)=-2,\\quad y^{(4)}(0)=-1.
+      \\]</div>`,
+      solution:`<p>The characteristic polynomial factors as</p>
+      <div class="eq">\\[
+      r(r-1)^2(r^2+1)=0.
       \\]</div>
-      <p>Try <span class="math">y_p=A\\cos3t+B\\sin3t</span>. The <span class="math">y''+9y</span> terms cancel, leaving</p>
-      <div class="eq">\\[-6A\\sin3t+6B\\cos3t=10\\cos3t,\\]</div>
-      <p>so <span class="math">A=0</span>, <span class="math">B=5/3</span>. The initial data give <span class="math">C_1=0</span> and <span class="math">C_2=-5/(2\\sqrt2)</span>.</p>
-      <div class="whybox"><div class="eq">\\[
-      \\boxed{y(t)=-\\frac5{2\\sqrt2}e^{-t}\\sin(2\\sqrt2\,t)+\\frac53\\sin3t}.
-      \\]</div></div>
-      <p>Since <span class="math">c^2-4mk=4-36<0</span> and <span class="math">c>0</span>, the free motion is <b>underdamped</b>. The forcing frequency equals the undamped natural frequency, but positive damping keeps the steady-state amplitude finite, so there is <b>no unbounded resonance</b>.</p>
-      <p><b>Marking guide (17):</b> model/ICs 3; homogeneous response 4; forced response 5; constants 3; interpretation 2.</p>`
-    },
-    {
-      id:"F2",pool:"F",minutes:9,marks:17,
-      prompt:`<p>A series RLC circuit has <span class="math">L=1\\,\\mathrm H</span>, <span class="math">R=4\\,\\Omega</span>, <span class="math">C=1/13\\,\\mathrm F</span>, and applied voltage <span class="math">E(t)=10e^{-2t}\\,\\mathrm V</span>. Initially the capacitor is uncharged and the current is zero.</p>
-      <p>Using capacitor charge <span class="math">q(t)</span> as the dependent variable, (a) derive the IVP, (b) solve for <span class="math">q(t)</span>, and (c) obtain the current <span class="math">i(t)</span>.</p>`,
-      solution:`<p>Kirchhoff's voltage law is</p>
-      <div class="eq">\\[Lq''+Rq'+\\frac1Cq=E(t),\\qquad i=q'.\\]</div>
       <p>Thus</p>
       <div class="eq">\\[
-      \\boxed{q''+4q'+13q=10e^{-2t}},\\qquad q(0)=0,\\qquad q'(0)=0.
+      y=C_0+e^x(C_1+C_2x)+C_3\\cos x+C_4\\sin x.
       \\]</div>
-      <p>The homogeneous roots are <span class="math">-2\\pm3i</span>:</p>
-      <div class="eq">\\[q_h=e^{-2t}(C_1\\cos3t+C_2\\sin3t).\\]</div>
-      <p>Try <span class="math">q_p=Ae^{-2t}</span>. Substitution gives <span class="math">9Ae^{-2t}=10e^{-2t}</span>, so <span class="math">A=10/9</span>. The initial data give <span class="math">C_1=-10/9</span>, <span class="math">C_2=0</span>.</p>
+      <p>Substituting the five initial conditions gives <span class="math">C_0=1,C_1=1,C_2=-1,C_3=2,C_4=0</span>. Hence</p>
       <div class="whybox"><div class="eq">\\[
-      \\boxed{q(t)=\\frac{10}{9}e^{-2t}(1-\\cos3t)}.
+      \\boxed{y=1+e^x(1-x)+2\\cos x}.
       \\]</div></div>
-      <p>Differentiating,</p>
+      <p><b>Marking guide (17):</b> factorization 5; correct five-function basis 5; constants 5; check 2.</p>`
+    },
+    {
+      id:"F2",pool:"F",minutes:8,marks:17,
+      prompt:`<p>Solve for <span class="math">x>0</span>:</p>
       <div class="eq">\\[
-      \\boxed{i(t)=q'(t)=\\frac{10}{9}e^{-2t}\\left[-2(1-\\cos3t)+3\\sin3t\\right]}.
+      y'=\\frac{x+y}{x-y},\\qquad y(1)=0.
+      \\]</div>`,
+      solution:`<p>Set <span class="math">y=ux</span>. Then</p>
+      <div class="eq">\\[
+      u+xu'=\\frac{1+u}{1-u},
       \\]</div>
-      <p><b>Marking guide (17):</b> circuit model/ICs 4; homogeneous response 3; particular response 4; constants 3; current 3.</p>`
+      <p>so</p>
+      <div class="eq">\\[
+      \\frac{1-u}{1+u^2}\\,du=\\frac{dx}{x}.
+      \\]</div>
+      <p>Integrating,</p>
+      <div class="eq">\\[
+      \\arctan u-\\frac12\\ln(1+u^2)=\\ln x+C.
+      \\]</div>
+      <p>The initial condition gives <span class="math">C=0</span>. Restoring <span class="math">u=y/x</span>, the IVP solution is implicitly defined by</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{\\arctan\\!\\left(\\frac yx\\right)
+      -\\frac12\\ln\\!\\left(1+\\frac{y^2}{x^2}\\right)=\\ln x}.
+      \\]</div></div>
+      <p><b>Marking guide (17):</b> homogeneous substitution 4; separable reduction 4; integration 5; initial condition 2; restore variables/check 2.</p>`
+    },
+    {
+      id:"F3",pool:"F",minutes:9,marks:17,
+      prompt:`<p>Solve:</p>
+      <div class="eq">\\[
+      y'''-3y''+3y'-y=e^x(x^2+1),
+      \\qquad y(0)=y'(0)=y''(0)=0.
+      \\]</div>`,
+      solution:`<p>The left side is <span class="math">(D-1)^3y</span>. Put <span class="math">y=e^xv</span>. Then</p>
+      <div class="eq">\\[
+      (D-1)^3(e^xv)=e^xv''',
+      \\]</div>
+      <p>so <span class="math">v'''=x^2+1</span>. Three integrations give</p>
+      <div class="eq">\\[
+      v=\\frac{x^5}{60}+\\frac{x^3}{6}+\\frac{A}{2}x^2+Bx+C.
+      \\]</div>
+      <p>The three zero initial conditions force <span class="math">A=B=C=0</span>. Therefore</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y=e^x\\left(\\frac{x^5}{60}+\\frac{x^3}{6}\\right)}.
+      \\]</div></div>
+      <p><b>Marking guide (17):</b> operator structure 4; substitution 4; three integrations 5; initial conditions 2; check 2.</p>`
+    },
+    {
+      id:"F4",pool:"F",minutes:9,marks:17,
+      prompt:`<p>Solve:</p>
+      <div class="eq">\\[
+      y'=y^2+(1-2x)y+x^2-x+1,\\qquad y(0)=1.
+      \\]</div>`,
+      solution:`<p>Inspection gives the particular solution <span class="math">S=x</span>. Set</p>
+      <div class="eq">\\[
+      y=x+\\frac1z.
+      \\]</div>
+      <p>Substitution reduces the Riccati equation to</p>
+      <div class="eq">\\[
+      z'+z=-1.
+      \\]</div>
+      <p>Thus <span class="math">z=Ce^{-x}-1</span>, so</p>
+      <div class="eq">\\[
+      y=x+\\frac1{Ce^{-x}-1}.
+      \\]</div>
+      <p>The initial condition gives <span class="math">C=2</span>. Therefore</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y=x+\\frac1{2e^{-x}-1}},\\qquad
+      \\boxed{-\\infty<x<\\ln2}.
+      \\]</div></div>
+      <p><b>Marking guide (17):</b> particular solution 3; Riccati substitution 4; transformed linear equation 4; constant 3; interval/check 3.</p>`
+    },
+    {
+      id:"F5",pool:"F",minutes:8,marks:16,
+      prompt:`<p>Solve completely:</p>
+      <div class="eq">\\[
+      y=xy'+e^{y'}.
+      \\]</div>`,
+      solution:`<p>This is Clairaut with <span class="math">p=y'</span> and <span class="math">f(p)=e^p</span>. The general line family is</p>
+      <div class="eq">\\[
+      \\boxed{y=Cx+e^C}.
+      \\]</div>
+      <p>The singular envelope satisfies <span class="math">x=-f'(p)=-e^p</span>, so it exists for <span class="math">x<0</span> and <span class="math">p=\\ln(-x)</span>. Substituting back,</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y=x\\ln(-x)-x},\\qquad x<0.
+      \\]</div></div>
+      <p><b>Marking guide (16):</b> line family 6; envelope condition 4; eliminate parameter 4; check/domain 2.</p>`
     }
+
   ];
 
   const pools=["A","B","C","D","E","F"];

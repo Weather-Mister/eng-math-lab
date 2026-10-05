@@ -438,47 +438,113 @@
 
     {
       id:"E1",pool:"E",minutes:9,marks:16,
-      prompt:`<p>For <span class="math">x>0</span>, solve the initial-value problem</p>
+      prompt:`<p>Solve for <span class="math">x>0</span>:</p>
       <div class="eq">\\[
       x^2y''-3xy'+4y=x^2\\ln x,\\qquad y(1)=1,\\qquad y'(1)=0.
       \\]</div>`,
-      solution:`<p>Set <span class="math">t=\\ln x</span> and <span class="math">Y(t)=y(e^t)</span>. Then</p>
-      <div class="eq">\\[xy'=Y',\\qquad x^2y''=Y''-Y'.\\]</div>
-      <p>The equation becomes</p>
+      solution:`<p>Set <span class="math">t=\\ln x</span>, <span class="math">Y(t)=y(e^t)</span>. Then <span class="math">xy'=Y'</span> and <span class="math">x^2y''=Y''-Y'</span>. The equation becomes</p>
       <div class="eq">\\[
       Y''-4Y'+4Y=e^{2t}t.
       \\]</div>
-      <p>The left side is <span class="math">(D-2)^2Y</span>. Put <span class="math">Y=e^{2t}V</span>; then <span class="math">(D-2)^2Y=e^{2t}V''</span>, so</p>
-      <div class="eq">\\[V''=t.\\]</div>
-      <p>Hence <span class="math">V=t^3/6+C_2t+C_1</span>. Returning to <span class="math">x</span>,</p>
+      <p>Put <span class="math">Y=e^{2t}V</span>. Then <span class="math">V''=t</span>, so</p>
+      <div class="eq">\\[
+      V=\\frac{t^3}{6}+C_2t+C_1.
+      \\]</div>
+      <p>Hence</p>
       <div class="eq">\\[
       y=x^2\\left(C_1+C_2\\ln x+\\frac{(\\ln x)^3}{6}\\right).
       \\]</div>
-      <p>The conditions give <span class="math">C_1=1</span> and <span class="math">C_2=-2</span>.</p>
+      <p>The conditions give <span class="math">C_1=1,C_2=-2</span>. Therefore</p>
       <div class="whybox"><div class="eq">\\[
-      \\boxed{y=x^2\\left(1-2\\ln x+\\frac{(\\ln x)^3}{6}\\right)},\\qquad x>0.
+      \\boxed{y=x^2\\left(1-2\\ln x+\\frac{(\\ln x)^3}{6}\\right)}.
       \\]</div></div>
-      <p><b>Marking guide (16):</b> change of variable identities 4; transformed ODE 3; solve transformed equation 4; restore x 2; initial data 3.</p>`
+      <p><b>Marking guide (16):</b> Euler transform 4; transformed equation 3; solve 4; restore x 2; initial data 3.</p>`
     },
     {
       id:"E2",pool:"E",minutes:8,marks:16,
-      prompt:`<p>Let <span class="math">b</span> be a real constant. Determine exactly for which values of <span class="math">b</span> the boundary-value problem has a solution. For every admissible <span class="math">b</span>, give <em>all</em> solutions and state whether the solution is unique.</p>
+      prompt:`<p>Solve:</p>
       <div class="eq">\\[
-      y''+4y=8\\cos(2x),\\qquad y(0)=0,\\qquad y(\\pi/2)=b.
+      y''+4y=8\\cos(2x),\\qquad y(0)=0,\\qquad y(\\pi/4)=1.
       \\]</div>`,
-      solution:`<p>The complementary solution is</p>
-      <div class="eq">\\[y_h=A\\cos2x+B\\sin2x.\\]</div>
-      <p>Because the forcing is resonant, a particular solution is <span class="math">y_p=2x\\sin2x</span>. Therefore</p>
-      <div class="eq">\\[y=A\\cos2x+B\\sin2x+2x\\sin2x.\\]</div>
-      <p>The condition <span class="math">y(0)=0</span> gives <span class="math">A=0</span>. At <span class="math">x=\\pi/2</span>, both sine terms vanish, so every remaining solution has</p>
-      <div class="eq">\\[y(\\pi/2)=0.\\]</div>
-      <div class="whybox">
-      <p>If <span class="math">\\boxed{b\\ne0}</span>, there is <b>no solution</b>.</p>
-      <p>If <span class="math">\\boxed{b=0}</span>, there are <b>infinitely many</b> solutions:</p>
-      <div class="eq">\\[\\boxed{y=B\\sin2x+2x\\sin2x,\\qquad B\\in\\mathbb R}.\\]</div>
-      </div>
-      <p><b>Marking guide (16):</b> homogeneous family 3; resonant particular 4; first boundary 2; compatibility at second boundary 4; classify solution count 3.</p>`
+      solution:`<p>The homogeneous solution is</p>
+      <div class="eq">\\[
+      y_h=A\\cos2x+B\\sin2x.
+      \\]</div>
+      <p>The forcing resonates with <span class="math">\\cos2x</span>. A particular solution is <span class="math">y_p=2x\\sin2x</span>. Therefore</p>
+      <div class="eq">\\[
+      y=A\\cos2x+B\\sin2x+2x\\sin2x.
+      \\]</div>
+      <p>From <span class="math">y(0)=0</span>, <span class="math">A=0</span>. At <span class="math">x=\\pi/4</span>,</p>
+      <div class="eq">\\[
+      B+\\frac{\\pi}{2}=1,
+      \\]</div>
+      <p>so <span class="math">B=1-\\pi/2</span>. Hence</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y=\\left(1-\\frac{\\pi}{2}\\right)\\sin2x+2x\\sin2x}.
+      \\]</div></div>
+      <p><b>Marking guide (16):</b> homogeneous solution 3; resonant particular 5; boundary constants 5; check 3.</p>`
     },
+    {
+      id:"E3",pool:"E",minutes:7,marks:16,
+      prompt:`<p>Solve for <span class="math">x>0</span>:</p>
+      <div class="eq">\\[
+      x^2y''-5xy'+9y=0,\\qquad y(1)=2,\\qquad y'(1)=5.
+      \\]</div>`,
+      solution:`<p>Trying <span class="math">y=x^m</span> gives</p>
+      <div class="eq">\\[
+      m(m-1)-5m+9=(m-3)^2=0.
+      \\]</div>
+      <p>Therefore</p>
+      <div class="eq">\\[
+      y=x^3(C_1+C_2\\ln x).
+      \\]</div>
+      <p>At <span class="math">x=1</span>, <span class="math">C_1=2</span> and <span class="math">y'(1)=3C_1+C_2=5</span>, so <span class="math">C_2=-1</span>. Thus</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y=x^3(2-\\ln x)}.
+      \\]</div></div>
+      <p><b>Marking guide (16):</b> indicial equation 4; repeated-root Euler basis 5; constants 4; check/domain 3.</p>`
+    },
+    {
+      id:"E4",pool:"E",minutes:8,marks:16,
+      prompt:`<p>Solve for <span class="math">x>0</span>:</p>
+      <div class="eq">\\[
+      x^2y''-xy'+5y=0,\\qquad y(1)=1,\\qquad y'(1)=0.
+      \\]</div>`,
+      solution:`<p>The indicial equation is</p>
+      <div class="eq">\\[
+      m(m-1)-m+5=m^2-2m+5=0,
+      \\]</div>
+      <p>with roots <span class="math">1\\pm2i</span>. Thus</p>
+      <div class="eq">\\[
+      y=x\\left[C_1\\cos(2\\ln x)+C_2\\sin(2\\ln x)\\right].
+      \\]</div>
+      <p>The conditions give <span class="math">C_1=1</span> and <span class="math">C_1+2C_2=0</span>, hence <span class="math">C_2=-1/2</span>. Therefore</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y=x\\left[\\cos(2\\ln x)-\\frac12\\sin(2\\ln x)\\right]}.
+      \\]</div></div>
+      <p><b>Marking guide (16):</b> indicial equation 4; complex-root Euler form 5; constants 4; check/domain 3.</p>`
+    },
+    {
+      id:"E5",pool:"E",minutes:7,marks:16,
+      prompt:`<p>Solve for <span class="math">x>0</span>:</p>
+      <div class="eq">\\[
+      x^2y''+xy'-y=x^2,\\qquad y(1)=1,\\qquad y'(1)=0.
+      \\]</div>`,
+      solution:`<p>The homogeneous indicial equation is <span class="math">m^2-1=0</span>, so</p>
+      <div class="eq">\\[
+      y_h=C_1x+\\frac{C_2}{x}.
+      \\]</div>
+      <p>For the forcing, try <span class="math">y_p=Ax^2</span>. Substitution gives <span class="math">3Ax^2=x^2</span>, so <span class="math">A=1/3</span>. Hence</p>
+      <div class="eq">\\[
+      y=C_1x+\\frac{C_2}{x}+\\frac{x^2}{3}.
+      \\]</div>
+      <p>The initial data give <span class="math">C_1=0,C_2=2/3</span>. Therefore</p>
+      <div class="whybox"><div class="eq">\\[
+      \\boxed{y=\\frac{2}{3x}+\\frac{x^2}{3}}.
+      \\]</div></div>
+      <p><b>Marking guide (16):</b> homogeneous Euler solution 5; particular 4; constants 4; check/domain 3.</p>`
+    },
+
     {
       id:"F1",pool:"F",minutes:9,marks:17,
       prompt:`<p>A <span class="math">1\\,\\mathrm{kg}</span> mass is attached to a spring with stiffness <span class="math">9\\,\\mathrm{N/m}</span> and a viscous damper with coefficient <span class="math">2\\,\\mathrm{N\\,s/m}</span>. It is driven by <span class="math">10\\cos(3t)\\,\\mathrm N</span>. Displacement is measured from equilibrium. At <span class="math">t=0</span>, the mass is at equilibrium and at rest.</p>

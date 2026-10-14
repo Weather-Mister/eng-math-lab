@@ -20,7 +20,7 @@
       ['First shifting theorem', 'e^{at}f(t)', 'F(s-a)', 'F(s)=\\mathcal L\\{f(t)\\}', 'frequency shift exponential'],
       ['Second shifting theorem', 'H(t-a)f(t-a)', 'e^{-as}F(s)', 'a\\ge0', 'delay clock reset'],
       ['Unit step', 'H(t-a)', '\\frac{e^{-as}}{s}', 'a\\ge0,\\ \\operatorname{Re}(s)>0', 'heaviside step'],
-      ['Finite rectangular pulse', 'A[H(t-a)-H(t-b)]', '\\frac{A(e^{-as}-e^{-bs})}{s}', '0\\le a<b', 'pulse on off'],
+      ['Finite rectangular pulse', 'A[H(t-a)-H(t-b)]', '\\frac{A(e^{-as}-e^{-bs})}{s}', '0\\le a\\lt b', 'pulse on off'],
       ['Gate without clock reset', 'H(t-a)f(t)', 'e^{-as}\\mathcal L\\{f(t+a)\\}', 'a\\ge0', 'gate not a delay'],
       ['Unit staircase', '\\sum_{n=1}^{\\infty}H(t-nT)', '\\frac{e^{-sT}}{s(1-e^{-sT})}', 'T>0,\\ \\operatorname{Re}(s)>0', 'staircase repeated jumps'],
       ['Finite staircase', '\\sum_{n=1}^{N}H(t-nT)', '\\frac{e^{-sT}(1-e^{-NsT})}{s(1-e^{-sT})}', 'N\\in\\mathbb N,\\ T>0', 'finite repeated steps'],

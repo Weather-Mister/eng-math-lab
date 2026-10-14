@@ -21,6 +21,8 @@ jobs:
           for file in lesson{11..25}.js index.html; do
             if [[ "$file" == *.js ]]; then node --check "$file"; fi
           done
+      - name: Verify Lesson 11–15 pedagogy and mathematical content
+        run: node tests/lesson11-15-content.mjs
       - name: Locate Chrome
         shell: bash
         run: |

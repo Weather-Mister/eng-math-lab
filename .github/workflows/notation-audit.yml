@@ -37,6 +37,10 @@ jobs:
           python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/engmath-http.log 2>&1 &
           sleep 2
           curl --fail --silent http://127.0.0.1:8765/ >/dev/null
+      - name: Test Laplace reference drag, resize, shortcut and typesetting
+        env:
+          SITE_URL: http://127.0.0.1:8765/
+        run: node tests/laplace-reference.mjs
       - name: Inspect rendering of every Lesson 11–25 screen
         env:
           SITE_URL: http://127.0.0.1:8765/

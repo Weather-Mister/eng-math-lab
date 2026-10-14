@@ -1,0 +1,41 @@
+name: Lesson 11–25 notation and rendering audit
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-notation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+      - name: Check JavaScript syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+          for file in lesson{11..25}.js index.html; do
+            if [[ "$file" == *.js ]]; then node --check "$file"; fi
+          done
+      - name: Locate Chrome
+        shell: bash
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser)"
+          test -n "$CHROME_BIN"
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+          "$CHROME_BIN" --version
+      - name: Install Puppeteer driver
+        run: npm install --no-save puppeteer-core@24
+      - name: Serve repository locally
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/engmath-http.log 2>&1 &
+          sleep 2
+          curl --fail --silent http://127.0.0.1:8765/ >/dev/null
+      - name: Inspect rendering of every Lesson 11–25 screen
+        env:
+          SITE_URL: http://127.0.0.1:8765/
+        run: node tests/notation-browser.mjs

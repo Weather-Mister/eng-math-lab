@@ -25,11 +25,11 @@ try {
       open:!win.hidden,groups:win.querySelectorAll('.laplaceGroup').length,rows:rows.length,
       typeset:win.querySelectorAll('mjx-container').length,
       failures:win.querySelectorAll('mjx-merror,.MathJax_Error').length,
-      raw:[...win.querySelectorAll('.laplaceMath')].some(el=>[...el.childNodes].some(node=>node.nodeType===3 && /\\(?:frac|\()/.test(node.textContent))),
+      rawNodes:[...win.querySelectorAll('.laplaceMath')].flatMap(el=>[...el.childNodes].filter(node=>node.nodeType===3 && /\\(?:frac|\()/.test(node.textContent)).map(node=>node.textContent.slice(0,125))),
       geom: win.getBoundingClientRect().toJSON()
     };
   });
-  assert(math.open&&math.groups===4&&math.rows>=35&&math.typeset>=math.rows*2&&!math.failures&&!math.raw,
+  assert(math.open&&math.groups===4&&math.rows>=35&&math.typeset>=math.rows*2&&!math.failures&&!math.rawNodes.length,
     'Laplace table is missing or has unrendered formulas: '+JSON.stringify(math));
   const before=await page.$eval('#laplaceFloating',el=>el.getBoundingClientRect().toJSON());
   const title=await page.$eval('#laplaceDragHandle',el=>el.getBoundingClientRect().toJSON());

@@ -25,7 +25,7 @@ try {
       open:!win.hidden,groups:win.querySelectorAll('.laplaceGroup').length,rows:rows.length,
       typeset:win.querySelectorAll('mjx-container').length,
       failures:win.querySelectorAll('mjx-merror,.MathJax_Error').length,
-      raw:win.textContent.includes('\\frac') || win.textContent.includes('\\('),
+      raw:(()=>{const clone=win.cloneNode(true);clone.querySelectorAll('mjx-container').forEach(node=>node.remove());return clone.textContent.includes('\\frac')||clone.textContent.includes('\\(');})(),
       geom: win.getBoundingClientRect().toJSON()
     };
   });

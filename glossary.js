@@ -398,6 +398,10 @@
     {lesson:23,unit:'l23-phase',screen:'Interactive Desmos — rotation, centers, and radial nodes',name:'Phase portraits',desc:'Change α and β to move among spiral sinks, centers, spiral sources, and the no-rotation radial cases.'}
   ];
 
+  // Same source of truth as the movable Laplace reference.
+  const laplace='<div class="laplaceGlossaryLaunch"><p>Laplace transform pairs and the conditions under which they hold.</p><button type="button" data-laplace-float-open>Open floating table · Alt + L</button></div>' +
+    (window.LaplaceReference ? window.LaplaceReference.tableMarkup() : '<p>Laplace reference could not load. Refresh this page.</p>');
+
   const simulations=`
     <p class="glossaryIntro">Every interactive Desmos model currently built into the course, collected in one place. Use <b>Open simulation</b> to jump directly to the live adjustable graph.</p>
     <div class="glossarySimulationGrid">
@@ -446,6 +450,7 @@
           <button class="glossaryTab" data-glossary-tab="first" role="tab" aria-selected="false">First-order ODE methods</button>
           <button class="glossaryTab" data-glossary-tab="higher" role="tab" aria-selected="false">Higher-order ODE methods</button>
           <button class="glossaryTab" data-glossary-tab="applied" role="tab" aria-selected="false">Applied ODE models</button>
+          <button class="glossaryTab" data-glossary-tab="laplace" role="tab" aria-selected="false">Laplace table</button>
           <button class="glossaryTab" data-glossary-tab="simulations" role="tab" aria-selected="false">Desmos simulations</button>
         </div>
         <div class="glossaryBody">
@@ -453,6 +458,7 @@
           <section class="glossarySection" data-glossary-section="first">${firstOrder}</section>
           <section class="glossarySection" data-glossary-section="higher">${higherOrder}</section>
           <section class="glossarySection" data-glossary-section="applied">${appliedODE}</section>
+          <section class="glossarySection" data-glossary-section="laplace">${laplace}</section>
           <section class="glossarySection" data-glossary-section="simulations">${simulations}</section>
         </div>
       </div>
@@ -515,6 +521,10 @@
     modal.querySelector('.glossaryClose')?.addEventListener('click',closeGlossary);
     modal.querySelectorAll('[data-glossary-tab]').forEach(btn=>btn.addEventListener('click',()=>setSection(btn.dataset.glossaryTab)));
     modal.querySelectorAll('[data-sim-unit]').forEach(btn=>btn.addEventListener('click',()=>openSimulation(btn.dataset.simUnit,btn.dataset.simScreen)));
+    modal.querySelector('[data-laplace-float-open]')?.addEventListener('click',()=>{
+      closeGlossary();
+      if(window.LaplaceReference) window.LaplaceReference.open();
+    });
     modal.addEventListener('click',e=>{if(e.target===modal) closeGlossary();});
     document.addEventListener('keydown',e=>{if(e.key==='Escape' && modal.classList.contains('open')) closeGlossary();});
   }

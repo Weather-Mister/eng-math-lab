@@ -51,7 +51,7 @@ try {
     const el=document.querySelector('#laplaceFloating');
     return {label:el.querySelector('.laplaceCount').textContent,rows:[...el.querySelectorAll('.laplaceTable tbody tr')].filter(row=>!row.hidden)};
   });
-  assert(search.label==='1 formulas','Search should find one convolution pair: '+search.label);
+  assert(search.label==='2 formulas','Search should match convolution and delta-convolution entries: '+search.label);
   await page.$eval('.laplaceSearch',el=>{el.value='';el.dispatchEvent(new Event('input',{bubbles:true}));});
   await page.evaluate(()=>window.LaplaceReference.close());
   await page.keyboard.down('Alt');await page.keyboard.press('l');await page.keyboard.up('Alt');

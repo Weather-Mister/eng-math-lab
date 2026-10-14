@@ -1,0 +1,102 @@
+/* Shared, mathematical Laplace reference: glossary and floating window. */
+.laplaceReference{color:var(--ink);min-width:0;font-size:13px}
+.laplaceLead{margin:0 0 14px;font-size:12px;line-height:1.65;color:var(--ink-soft)}
+.laplaceLead mjx-container{display:inline-block!important;max-width:100%}
+.laplaceGroupBar{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:0 0 15px}
+.laplaceFilter{border:1px solid #dfe5ef;background:#fff;color:#50607a;border-radius:999px;padding:7px 11px;cursor:pointer;font-size:10.5px;font-weight:800}
+.laplaceFilter.active{background:#e9eeff;border-color:#9daeea;color:#31469b}
+.laplaceFilter:hover{border-color:#99a9d5}
+.laplaceGroup{margin-bottom:17px;min-width:0}
+.laplaceGroup[hidden],.laplaceTable tr[hidden]{display:none!important}
+.laplaceGroup h3{font-size:13.5px;font-weight:900;color:var(--ink);margin:0 0 8px;letter-spacing:-.01em}
+.laplaceTableScroll{overflow-x:auto;max-width:100%;border-radius:12px;border:1px solid #dfe6f1;background:#fff;overscroll-behavior-x:contain}
+.laplaceTable{border-collapse:collapse;width:100%;min-width:600px;table-layout:auto;font-size:11.5px}
+.laplaceTable thead{background:#eef2fa}
+.laplaceTable th,.laplaceTable td{padding:11px 12px;border-bottom:1px solid #e8ecf3;vertical-align:middle;text-align:left;line-height:1.45}
+.laplaceTable thead th{font-size:10px;letter-spacing:.035em;text-transform:uppercase;color:#596681;font-weight:900;white-space:nowrap}
+.laplaceTable tbody tr:last-child>*{border-bottom:0}
+.laplaceTable tbody tr:nth-child(even){background:#f9fbff}
+.laplaceTable tbody th{font-weight:850;min-width:150px;color:#27334d}
+.laplaceTable td:nth-child(2){min-width:165px}
+.laplaceTable td:nth-child(3){min-width:190px;color:#263e83}
+.laplaceTable td:nth-child(4){min-width:150px}
+.laplaceTable .laplaceMath{display:inline-block;white-space:nowrap;max-width:100%;vertical-align:middle}
+.laplaceTable mjx-container{margin:0!important;color:inherit}
+.laplaceCondition{font-size:10px;color:#67768f}
+.laplaceFoot{font-size:11.5px;line-height:1.8;color:#59647b;padding:12px 13px;background:#f0f4ff;border:1px solid #dfe7fa;border-radius:12px}
+.laplaceFoot b{color:#334c95}
+.laplaceGlossaryLaunch{margin:0 0 12px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.laplaceGlossaryLaunch p{margin:0;font-size:12px;color:var(--ink-soft)}
+.laplaceGlossaryLaunch button{padding:9px 12px;border-radius:11px;border:1px solid #a8b7e6;background:#eef1ff;color:#394da6;font-size:11px;font-weight:850;cursor:pointer}
+.laplaceToggle,.mobileLaplaceToggle{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.82);color:var(--ink);padding:9px 11px;min-height:40px;cursor:pointer;font-size:11px;font-weight:900;white-space:nowrap}
+.laplaceToggle:hover,.mobileLaplaceToggle:hover{border-color:#9daeea;background:#eef1ff}
+.laplaceToggle[aria-pressed=true],.mobileLaplaceToggle[aria-pressed=true]{border-color:#879ee7;background:#e7edff;color:#31469b}
+.laplaceToggleIcon{font-family:Georgia,serif;font-size:19px;font-weight:900;line-height:1}
+.mobileLaplaceToggle{display:none}
+.laplaceFloating{position:fixed;display:flex;flex-direction:column;z-index:21000;border:1px solid #b8c6df;border-radius:17px;overflow:hidden;background:#fff;color:var(--ink);box-shadow:0 18px 50px rgba(19,36,71,.22),0 2px 8px rgba(19,36,71,.08);min-width:260px;min-height:220px;isolation:isolate}
+.laplaceFloating[hidden]{display:none!important}
+.laplaceWindowHead{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;background:#f1f4fc;border-bottom:1px solid #dce4f2;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none}
+.laplaceWindowHead:active,.laplaceFloating.laplaceInteracting .laplaceWindowHead{cursor:grabbing}
+.laplaceWindowHead:focus-visible,.laplaceResizeGrip:focus-visible{outline:2px solid #5669d4;outline-offset:-2px}
+.laplaceWindowHeading{display:flex;align-items:center;gap:10px;min-width:0;pointer-events:none}
+.laplaceWindowHeading strong{display:block;font-size:12.5px;line-height:1.2;color:#273650}
+.laplaceWindowHeading small{display:block;margin-top:3px;font-size:10px;color:#6b7894}
+.laplaceWindowIcon{display:grid;place-items:center;height:34px;width:34px;flex:0 0 34px;font-family:Georgia,serif;font-weight:900;font-size:24px;color:#435fb6;background:#e2e9ff;border-radius:10px}
+.laplaceWindowActions{display:flex;align-items:center;gap:5px;flex-shrink:0}
+.laplaceWindowActions button{border:1px solid #d8e0ee;background:#fff;color:#45516d;border-radius:9px;padding:7px 8px;cursor:pointer;font-weight:800;font-size:10px}
+.laplaceWindowActions button:hover{background:#e8eeff}
+.laplaceWindowActions .laplaceClose{min-width:30px;padding:5px;font-size:18px;line-height:1.1}
+.laplaceWindowTools{display:flex;align-items:center;gap:12px;padding:9px 11px;border-bottom:1px solid #e5ebf4;background:#fff;flex-shrink:0}
+.laplaceSearchLabel{display:flex;align-items:center;gap:7px;padding:5px 9px;border:1px solid #dce4f0;border-radius:10px;flex:1;min-width:0;color:#7d89a0}
+.laplaceSearch{background:transparent;border:0;outline:0;min-width:0;width:100%;font-size:11px;color:#273650}
+.laplaceSearch::placeholder{color:#8390a5}
+.laplaceCount{font-size:10px;color:#79849b;white-space:nowrap}
+.laplaceWindowScroll{min-height:0;flex:1;overflow:auto;overscroll-behavior:contain;padding:14px 12px 19px}
+.laplaceWindowScroll .laplaceReference{font-size:12px}
+.laplaceWindowScroll .laplaceGroupBar{position:sticky;top:-14px;background:#fff;z-index:1;padding:4px 0 10px}
+.laplaceFloating .laplaceTable{font-size:11.5px}
+.laplaceResizeGrip{position:absolute;right:0;bottom:0;z-index:2;width:30px;height:30px;cursor:nwse-resize;touch-action:none;background:linear-gradient(135deg,transparent 0 51%,#93a2c0 52% 57%,transparent 58% 66%,#93a2c0 67% 72%,transparent 73%) bottom right / 20px 20px no-repeat}
+.laplaceInteracting *{user-select:none!important;-webkit-user-select:none!important}
+html[data-theme="dark"] .laplaceFloating{background:#131d2a;border-color:#42516b;color:#ecf2fb;box-shadow:0 18px 55px rgba(0,0,0,.45)}
+html[data-theme="dark"] .laplaceWindowHead{background:#1b283d;border-bottom-color:#384962}
+html[data-theme="dark"] .laplaceWindowHeading strong,html[data-theme="dark"] .laplaceGroup h3{color:#e2eaf9}
+html[data-theme="dark"] .laplaceWindowHeading small{color:#a3afc2}
+html[data-theme="dark"] .laplaceWindowIcon{background:#2c3959;color:#c2cbff}
+html[data-theme="dark"] .laplaceWindowActions button,html[data-theme="dark"] .laplaceFilter{background:#182435;border-color:#3a4960;color:#d5e0f2}
+html[data-theme="dark"] .laplaceFilter.active{background:#2b3a64;border-color:#6272bb}
+html[data-theme="dark"] .laplaceWindowTools,html[data-theme="dark"] .laplaceWindowScroll .laplaceGroupBar{background:#131d2a;border-color:#38475d}
+html[data-theme="dark"] .laplaceSearchLabel{border-color:#3c4b60}
+html[data-theme="dark"] .laplaceSearch{color:#e2eaf5}
+html[data-theme="dark"] .laplaceLead,html[data-theme="dark"] .laplaceGlossaryLaunch p{color:#b1bdd2}
+html[data-theme="dark"] .laplaceTableScroll{background:#152232;border-color:#3a475b}
+html[data-theme="dark"] .laplaceTable thead{background:#23314a}
+html[data-theme="dark"] .laplaceTable thead th{color:#adbdd8}
+html[data-theme="dark"] .laplaceTable th,html[data-theme="dark"] .laplaceTable td{border-bottom-color:#334055}
+html[data-theme="dark"] .laplaceTable tbody tr:nth-child(even){background:#18273a}
+html[data-theme="dark"] .laplaceTable tbody th{color:#e1eaf8}
+html[data-theme="dark"] .laplaceTable td:nth-child(3){color:#b3c5ff}
+html[data-theme="dark"] .laplaceCondition{color:#a6b2c5}
+html[data-theme="dark"] .laplaceFoot{background:#1b2944;border-color:#344a6c;color:#b9c8e1}
+html[data-theme="dark"] .laplaceFoot b{color:#d5e1ff}
+html[data-theme="dark"] .laplaceToggle,html[data-theme="dark"] .mobileLaplaceToggle{background:#151d2a;border-color:#344057;color:#e4eaf6}
+html[data-theme="dark"] .laplaceToggle:hover,html[data-theme="dark"] .mobileLaplaceToggle:hover{background:#252f52}
+html[data-theme="dark"] .laplaceGlossaryLaunch button{background:#252f52;border-color:#5869b8;color:#dfe5ff}
+@media(max-width:850px){
+  .laplaceToggle{display:none!important}
+  .mobileLaplaceToggle{display:inline-flex!important}
+  .laplaceFloating{max-width:calc(100vw - 10px);max-height:calc(100dvh - 10px);border-radius:14px}
+  .laplaceWindowHead{padding:8px}
+  .laplaceWindowHeading{gap:6px}
+  .laplaceWindowActions button{padding:7px 6px}
+  .laplaceWindowHeading strong{font-size:11px}
+  .laplaceWindowHeading small{font-size:9px}
+  .laplaceWindowIcon{height:29px;width:29px;flex-basis:29px;font-size:20px}
+  .laplaceWindowScroll{padding:9px}
+  .laplaceLead{font-size:11px}
+}
+@media(max-width:410px){
+  .mobileLaplaceToggle{height:40px;min-width:40px;padding:0 7px}
+  .mobileLaplaceToggle .laplaceToggleLabel{display:none}
+  .laplaceWindowActions button[data-laplace-action="reset"]{display:none}
+  .laplaceWindowActions button{font-size:9px}
+}

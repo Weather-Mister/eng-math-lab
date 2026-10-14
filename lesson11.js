@@ -3,7 +3,7 @@ const lesson11CoreTag='<span class="supplementalTag">Core · Oct. 21 syllabus ·
 const lesson11BookTag='<span class="supplementalTag">Authentic textbook · O’Neil §3.3</span>';
 const lesson11ExplainTag='<span class="supplementalTag">Expanded explanation · Lesson 1 depth standard</span>';
 const lesson11BoundaryTag='<span class="supplementalTag">Scope boundary · Oct. 28 material intentionally deferred</span>';
-function l11Book(n,prompt,solution){return {type:'bookproblem',bookSection:'§3.3',title:`O’Neil §3.3 Problem ${n}`,prompt,solution};}
+function l11Book(n,prompt,solution){const original=String(n).startsWith('T');return {type:'bookproblem',bookSection:original?'Original transfer':'§3.3',title:original?`Original transfer ${String(n).slice(1)}`:`O’Neil §3.3 Problem ${n}`,prompt,solution};}
 function l11Clone(s){return s?{...s,inlineBookPractice:true}:null;}
 const l11ForwardData=[
  {n:1,p:`f(t)=(t^3-3t+2)e^{-2t}`,work:`Ignoring the exponential first gives \\(F_0(s)=6/s^4-3/s^2+2/s\\). Since \\(e^{-2t}=e^{at}\\) with \\(a=-2\\), the first shifting theorem replaces every \\(s\\) by \\(s+2\\).`,ans:`\\frac6{(s+2)^4}-\\frac3{(s+2)^2}+\\frac2{s+2}`,why:`The plus sign inside \\(s+2\\) follows from \\(F(s-a)\\) with \\(a=-2\\).`},

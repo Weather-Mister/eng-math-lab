@@ -35,6 +35,29 @@ try {
   ));
   if (!plan.length) failures.push('No Lesson 11–25 screens found');
 
+  // A missing backslash inside a JS template string can silently corrupt rendered TeX.
+  const lesson16Notation = await page.evaluate(() => {
+    const screens16 = units.filter(u => u.courseLesson === 16)
+      .flatMap(u => u.lessons.flatMap(l => l.screens));
+    const html = title => screens16.find(s => s.title === title)?.html || '';
+    const multiply = html('Where the multiplication-by-t Laplace rule comes from');
+    const heaviside = html('Heaviside’s formula is not the Heaviside step function');
+    const periodic = html('Why periodic inputs have a geometric denominator');
+    return {
+      transformDefinition: multiply.includes('F(s)=\\mathcal L\\{f(t)\\}=\\int_0^\\infty'),
+      multiplicationRule: multiply.includes("\\boxed{\\mathcal L\\{tf(t)\\}=-F'(s)}"),
+      heavisideFormula: heaviside.includes("\\mathcal L^{-1}\\{F\\}=\\sum_j\\frac{P(r_j)}{Q'(r_j)}"),
+      partialFractionAnswer: heaviside.includes('\\boxed{f(t)=\\tfrac12e^{-t}+\\tfrac12e^{-3t}}'),
+      periodicFormula: periodic.includes('\\boxed{\\mathcal L\\{f(t)\\}(s)=\\frac{\\int_0^T'),
+      noControlCharacters: screens16.every(s => [s.html, s.prompt, s.solution]
+        .filter(Boolean).every(value => !/[\x08\t\r]/.test(value)))
+    };
+  });
+  for (const [check, passed] of Object.entries(lesson16Notation)) {
+    if (!passed) failures.push('Lesson 16 TeX escaping regression: ' + check);
+  }
+
+
   for (const step of plan) {
     const detail = await page.evaluate(async ({ui, li, si}) => {
       state.unit = ui;

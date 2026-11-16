@@ -3,6 +3,7 @@ name: Lesson 11–25 notation and rendering audit
 on:
   push:
     branches: ["main"]
+  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -23,6 +24,8 @@ jobs:
           done
       - name: Verify Lesson 11–15 pedagogy and mathematical content
         run: node tests/lesson11-15-content.mjs
+      - name: Verify Lesson 17–25 mathematics, conditions, and practice labels
+        run: node tests/lesson17-25-content.mjs
       - name: Locate Chrome
         shell: bash
         run: |
@@ -45,3 +48,7 @@ jobs:
         env:
           SITE_URL: http://127.0.0.1:8765/
         run: node tests/notation-browser.mjs
+      - name: Test Lesson 17–25 solutions and quizzes at desktop and mobile widths
+        env:
+          SITE_URL: http://127.0.0.1:8765/
+        run: node tests/lesson17-25-browser.mjs

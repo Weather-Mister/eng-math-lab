@@ -158,7 +158,7 @@
     a phase portrait is a <b>map of possible states rather than a graph against a clock</b>. Each point says “the system is currently in this state,” and the direction-field arrow there is tangent to the trajectory and shows the instantaneous direction of motion. A trajectory is the road followed from one initial state. For \(X'=AX\), real eigenvectors give invariant straight-line directions, while the eigenvalues determine growth or decay along them.`);
 
   add(23,'Interpret α ± iβ','complex-spiral',String.raw`
-    a complex pair \(\alpha\pm i\beta\) combines two motions at once: \(e^{\alpha t}\) continuously scales the radius while the sine/cosine part rotates with angular frequency \(|\beta|\). Think “<b>scale while turning</b>.” If \(\alpha<0\), the turning path shrinks inward; if \(\alpha>0\), it expands outward; if \(\alpha=0\), the linear pure-imaginary case has no exponential radial growth or decay.`);
+    a complex pair \(\alpha\pm i\beta\) combines an exponential envelope \(e^{\alpha t}\) with oscillation frequency \(|\beta|\). In suitable real coordinates this is scaling plus circular rotation; in the original coordinates circles may become ellipses, so radius and angular speed need not follow the circular formulas. Think “<b>scale while turning</b>.” If \(\alpha<0\), the turning path shrinks inward; if \(\alpha>0\), it expands outward; if \(\alpha=0\), the linear pure-imaginary case has no exponential radial growth or decay.`);
 
   // Lessons 9, 16, 24 and 25 are review/exam/presentation sessions rather than new conceptual blocks,
   // so this pass intentionally avoids adding decorative analogies there.

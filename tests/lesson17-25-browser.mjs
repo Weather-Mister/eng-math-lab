@@ -8,7 +8,7 @@ try{
  const page=await browser.newPage();
  page.on('pageerror',e=>failures.push('JavaScript: '+e.message));
  await page.goto(process.env.SITE_URL||'http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:60000});
- await page.waitForFunction(()=>typeof units!=='undefined'&&units.some(u=>u.courseLesson===25)&&window.MathJax?.startup?.promise);
+ await page.waitForFunction(()=>typeof units!=='undefined'&&units.some(u=>u.courseLesson===25)&&!!window.MathJax?.startup?.promise,{timeout:60000});
  await page.evaluate(()=>window.MathJax.startup.promise);
  const plan=await page.evaluate(()=>units.flatMap((u,ui)=>u.courseLesson>=17&&u.courseLesson<=25?u.lessons.flatMap((l,li)=>l.screens.map((s,si)=>({ui,li,si,number:u.courseLesson,title:s.title,type:s.type,answer:s.answer,math:/\\\[|\\\(/.test([s.html,s.prompt,s.solution,s.q].filter(Boolean).join(' '))}))):[]));
  assert(plan.length>=250);
